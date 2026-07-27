@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { SmartImage } from "@/components/SmartImage";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { breadcrumbJsonLd, jsonLdScriptProps } from "@/lib/jsonld";
 
 export async function generateMetadata({
   params,
@@ -10,7 +11,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "about" });
-  return { title: t("title") };
+  return { title: t("title"), description: t("description") };
 }
 
 export default async function AboutPage({
@@ -21,9 +22,22 @@ export default async function AboutPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("about");
+  const navT = await getTranslations("nav");
 
   return (
     <main className="max-w-5xl mx-auto px-4 py-12 w-full flex flex-col gap-10">
+      <script
+        {...jsonLdScriptProps(
+          breadcrumbJsonLd(
+            [
+              { name: navT("home"), path: "/" },
+              { name: navT("about"), path: "/o-nas" },
+            ],
+            locale,
+          ),
+        )}
+      />
+
       <div>
         <p className="font-mono text-xs uppercase tracking-widest opacity-60">
           {t("kicker")}

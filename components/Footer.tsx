@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-import NextLink from "next/link";
 import { Link } from "@/i18n/navigation";
 
 export function Footer() {
@@ -17,11 +16,11 @@ export function Footer() {
             <div className="opacity-70">511 01 Turnov</div>
           </div>
           <div>
-            <div className="uppercase opacity-50 mb-2">{c("phoneTitle")}</div>
+            <div className="uppercase opacity-60 mb-2">{c("phoneTitle")}</div>
             <a href="tel:+420776620290" className="link-underline hover:text-accent">
               776 620 290
             </a>
-            <div className="uppercase opacity-50 mt-3 mb-2">
+            <div className="uppercase opacity-60 mt-3 mb-2">
               {c("emailTitle")}
             </div>
             <a href="mailto:info@depocafe.cz" className="link-underline hover:text-accent">
@@ -29,7 +28,7 @@ export function Footer() {
             </a>
           </div>
           <div>
-            <div className="uppercase opacity-50 mb-2">{c("socialTitle")}</div>
+            <div className="uppercase opacity-60 mb-2">{c("socialTitle")}</div>
             <div className="flex flex-col gap-1">
               <a
                 href="https://www.facebook.com/depocafe.cz"
@@ -65,9 +64,6 @@ export function Footer() {
             <Link href="/obchodni-podminky" className="link-underline hover:text-accent">
               {t("terms")}
             </Link>
-            <NextLink href="/admin/demo" className="link-underline hover:text-accent">
-              {t("admin")}
-            </NextLink>
           </div>
         </div>
       </div>

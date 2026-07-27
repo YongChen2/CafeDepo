@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { MenuTable } from "@/components/MenuTable";
+import { MenuLinks } from "@/components/MenuLinks";
+import { OpeningHoursBoard } from "@/components/OpeningHoursBoard";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { nactiMenu } from "@/lib/menu-store";
-import { dnesniDatum, jeMenuProsle } from "@/lib/menu-utils";
-import type { DenZkratka } from "@/lib/types";
-
-export const revalidate = 60;
+import { breadcrumbJsonLd, jsonLdScriptProps } from "@/lib/jsonld";
+import { VYDEJ_OBEDU } from "@/lib/opening-hours";
 
 export async function generateMetadata({
   params,
@@ -15,7 +13,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "menuPage" });
-  return { title: t("title") };
+  return { title: t("title"), description: t("description") };
 }
 
 export default async function MenuPage({
@@ -27,66 +25,87 @@ export default async function MenuPage({
   setRequestLocale(locale);
 
   const t = await getTranslations("menuPage");
-  const daysT = await getTranslations("days");
+  const linksT = await getTranslations("menuLinks");
+  const commonT = await getTranslations("common");
+  const hoursT = await getTranslations("hours");
+  const navT = await getTranslations("nav");
 
-  const menu = await nactiMenu();
-  const prosle = jeMenuProsle(menu);
-
-  const days: Record<DenZkratka, string> = {
-    PO: daysT("PO"),
-    UT: daysT("UT"),
-    ST: daysT("ST"),
-    CT: daysT("CT"),
-    PA: daysT("PA"),
-  };
+  const categories = [
+    { title: t("coffeeTitle"), text: t("coffeeText") },
+    { title: t("breakfastTitle"), text: t("breakfastText") },
+    { title: t("cakesTitle"), text: t("cakesText") },
+    { title: t("lemonadeTitle"), text: t("lemonadeText") },
+    { title: t("beerTitle"), text: t("beerText") },
+  ];
 
   return (
     <main className="max-w-5xl mx-auto px-4 py-12 w-full flex flex-col gap-10">
+      <script
+        {...jsonLdScriptProps(
+          breadcrumbJsonLd(
+            [
+              { name: navT("home"), path: "/" },
+              { name: navT("menu"), path: "/menu" },
+            ],
+            locale,
+          ),
+        )}
+      />
+
       <div>
-        <p className="font-mono text-xs uppercase tracking-widest opacity-60">
-          {t("kicker")}: {menu.platnostOd} — {menu.platnostDo}
-        </p>
-        <h1 className="font-display uppercase tracking-tight text-4xl sm:text-6xl mt-2">
+        <h1 className="font-display uppercase tracking-tight text-4xl sm:text-6xl">
           {t("title")}
         </h1>
-        <p className="font-mono text-sm opacity-70 mt-2">{t("lunchServing")}</p>
+        <p className="font-mono text-sm uppercase tracking-widest opacity-70 mt-2">
+          {t("servingLabel")} {VYDEJ_OBEDU.open}—{VYDEJ_OBEDU.close}
+        </p>
       </div>
 
-      {prosle ? (
-        <div className="ascii-frame p-8 text-center flex flex-col gap-2">
-          <p className="font-display uppercase text-2xl tracking-tight text-accent">
-            {t("noMenu")}
-          </p>
-          <p className="font-mono text-sm opacity-70">{t("noMenuText")}</p>
-        </div>
-      ) : (
-        <ScrollReveal>
-          <MenuTable
-            menu={menu}
-            todayISO={dnesniDatum()}
-            labels={{
-              soup: t("soup"),
-              mains: t("mains"),
-              allergens: t("allergens"),
-              price: t("price"),
-              note: t("note"),
-              onRequest: t("onRequest"),
-              days,
-            }}
-          />
-        </ScrollReveal>
-      )}
+      <ScrollReveal>
+        <MenuLinks
+          labels={{
+            facebookTitle: linksT("facebookTitle"),
+            menickaTitle: linksT("menickaTitle"),
+            note: linksT("note"),
+            newWindow: commonT("newWindowSuffix"),
+          }}
+        />
+      </ScrollReveal>
 
-      <div className="ascii-frame p-6">
-        <h2 className="font-display uppercase text-xl tracking-tight mb-2">
+      <div>
+        <h2 className="font-display uppercase text-xl tracking-tight mb-4">
           {t("permanentTitle")}
         </h2>
-        <p className="font-mono text-sm opacity-80">{t("permanentText")}</p>
+        <div className="ascii-frame">
+          <div className="hairline-grid grid-cols-1 sm:grid-cols-2">
+            {categories.map((c) => (
+              <div key={c.title} className="bg-bg p-4 font-mono">
+                <div className="font-display uppercase text-base tracking-tight">
+                  {c.title}
+                </div>
+                <div className="text-sm opacity-70 mt-1">{c.text}</div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <p className="font-mono text-xs opacity-50">
-        {t("updated")}: {new Date(menu.aktualizovano).toLocaleString(locale)}
-      </p>
+      <div>
+        <h2 className="font-display uppercase text-xl tracking-tight mb-4">
+          {t("hoursTitle")}
+        </h2>
+        <OpeningHoursBoard
+          labels={{
+            title: hoursT("title"),
+            mon_fri: hoursT("mon_fri"),
+            sat: hoursT("sat"),
+            sun: hoursT("sun"),
+            closed: hoursT("closed"),
+            lunchNote: hoursT("lunchNote"),
+            today: hoursT("today"),
+          }}
+        />
+      </div>
     </main>
   );
 }

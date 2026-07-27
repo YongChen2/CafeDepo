@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { breadcrumbJsonLd, jsonLdScriptProps } from "@/lib/jsonld";
 import { SITE } from "@/lib/site";
-
-export const metadata: Metadata = {
-  title: "Ochrana osobních údajů",
-};
 
 const CS = {
   h1: "OCHRANA OSOBNÍCH ÚDAJŮ",
+  metaDescription:
+    "Zásady zpracování osobních údajů CAFE DEPO — jaké údaje zpracováváme, proč, jak dlouho a jaká máte práva.",
   updated: "Poslední aktualizace: 2026",
   sections: [
     {
@@ -43,6 +42,8 @@ const CS = {
 
 const EN = {
   h1: "PRIVACY POLICY",
+  metaDescription:
+    "CAFE DEPO privacy policy — what personal data we process, why, for how long, and your rights.",
   updated: "Last updated: 2026",
   sections: [
     {
@@ -76,6 +77,16 @@ const EN = {
   ],
 };
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const content = locale === "en" ? EN : CS;
+  return { title: content.h1, description: content.metaDescription };
+}
+
 export default async function PrivacyPage({
   params,
 }: {
@@ -84,14 +95,27 @@ export default async function PrivacyPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const content = locale === "en" ? EN : CS;
+  const navT = await getTranslations("nav");
 
   return (
     <main className="max-w-3xl mx-auto px-4 py-12 w-full flex flex-col gap-8">
+      <script
+        {...jsonLdScriptProps(
+          breadcrumbJsonLd(
+            [
+              { name: navT("home"), path: "/" },
+              { name: content.h1, path: "/ochrana-osobnich-udaju" },
+            ],
+            locale,
+          ),
+        )}
+      />
+
       <div>
         <h1 className="font-display uppercase tracking-tight text-3xl sm:text-5xl">
           {content.h1}
         </h1>
-        <p className="font-mono text-xs opacity-50 mt-2">{content.updated}</p>
+        <p className="font-mono text-xs opacity-60 mt-2">{content.updated}</p>
       </div>
       <div className="flex flex-col gap-6 font-mono text-sm">
         {content.sections.map((s) => (

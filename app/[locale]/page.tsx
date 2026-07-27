@@ -3,10 +3,9 @@ import { Link } from "@/i18n/navigation";
 import { OpeningHoursBoard } from "@/components/OpeningHoursBoard";
 import { SmartImage } from "@/components/SmartImage";
 import { MapEmbed } from "@/components/MapEmbed";
+import { MenuLinks } from "@/components/MenuLinks";
 import { Ticker } from "@/components/Ticker";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { nactiMenu } from "@/lib/menu-store";
-import { najdiDnesniDen, jeAktualniTyden, formatCena } from "@/lib/menu-utils";
 import { SITE } from "@/lib/site";
 
 export default async function HomePage({
@@ -19,12 +18,9 @@ export default async function HomePage({
 
   const t = await getTranslations("home");
   const hoursT = await getTranslations("hours");
-  const menuT = await getTranslations("menuPage");
+  const linksT = await getTranslations("menuLinks");
+  const commonT = await getTranslations("common");
   const contactT = await getTranslations("contact");
-
-  const menu = await nactiMenu();
-  const aktualni = jeAktualniTyden(menu);
-  const dnesniDen = aktualni ? najdiDnesniDen(menu) : null;
 
   const mapsQuery = encodeURIComponent(
     `${SITE.streetAddress}, ${SITE.postalCode} ${SITE.addressLocality}`,
@@ -89,58 +85,15 @@ export default async function HomePage({
           <h2 className="font-display uppercase text-2xl tracking-tight mb-4">
             {t("todayMenuTitle")}
           </h2>
-          <div className="ascii-frame">
-            <div className="p-4 bg-fg text-bg flex flex-wrap items-center justify-between gap-x-3 gap-y-1 font-mono text-xs uppercase">
-              <span>{menuT("kicker")}</span>
-              <span className="tabular-nums">
-                {menu.platnostOd} — {menu.platnostDo}
-              </span>
-            </div>
-            <div className="p-4 font-mono text-sm flex flex-col gap-4">
-              {dnesniDen ? (
-                <>
-                  <div>
-                    <div className="uppercase opacity-60 text-xs mb-1">
-                      {menuT("soup")}
-                    </div>
-                    {dnesniDen.polevka ? (
-                      <div className="flex justify-between gap-2">
-                        <span>{dnesniDen.polevka.nazev}</span>
-                        <span className="tabular-nums opacity-70 shrink-0">
-                          {formatCena(dnesniDen.polevka.cena)}
-                        </span>
-                      </div>
-                    ) : (
-                      <span className="opacity-40">—</span>
-                    )}
-                  </div>
-                  <div>
-                    <div className="uppercase opacity-60 text-xs mb-1">
-                      {menuT("mains")}
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      {dnesniDen.hlavni.map((j) => (
-                        <div key={j.id} className="flex justify-between gap-2">
-                          <span>{j.nazev}</span>
-                          <span className="tabular-nums opacity-70 shrink-0">
-                            {formatCena(j.cena)}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </>
-              ) : (
-                <p className="opacity-60">{menuT("noMenuText")}</p>
-              )}
-              <Link
-                href="/menu"
-                className="link-underline text-accent uppercase text-xs pt-2 inline-block"
-              >
-                {t("todayMenuCta")}
-              </Link>
-            </div>
-          </div>
+          <MenuLinks
+            compact
+            labels={{
+              facebookTitle: linksT("facebookTitle"),
+              menickaTitle: linksT("menickaTitle"),
+              note: linksT("note"),
+              newWindow: commonT("newWindowSuffix"),
+            }}
+          />
         </div>
       </ScrollReveal>
 
@@ -301,6 +254,7 @@ export default async function HomePage({
                 href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`${t("mapTitle")} — ${commonT("newWindowSuffix")}`}
                 className="link-underline text-accent uppercase text-xs pt-2"
               >
                 {t("mapTitle")} →

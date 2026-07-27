@@ -59,6 +59,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   const messages = await getMessages();
+  const t = await getTranslations("common");
 
   return (
     <html
@@ -67,9 +68,17 @@ export default async function LocaleLayout({
     >
       <body className="min-h-screen flex flex-col bg-bg text-fg font-mono antialiased">
         <script {...jsonLdScriptProps(cafeJsonLd())} />
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider messages={messages} timeZone="Europe/Prague">
+          <a
+            href="#main-content"
+            className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-2 focus-visible:left-2 focus-visible:z-[1000] focus-visible:bg-fg focus-visible:text-bg focus-visible:px-4 focus-visible:py-3 focus-visible:font-mono focus-visible:uppercase focus-visible:text-xs"
+          >
+            {t("skipLink")}
+          </a>
           <Header />
-          <div className="flex-1 flex flex-col">{children}</div>
+          <div id="main-content" className="flex-1 flex flex-col">
+            {children}
+          </div>
           <Footer />
           <CookieConsent />
         </NextIntlClientProvider>

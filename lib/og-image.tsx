@@ -44,7 +44,7 @@ export function renderOgImage() {
             marginTop: 44,
             width: 340,
             height: 6,
-            background: "#e61919",
+            background: "#c81414",
           }}
         />
       </div>

@@ -2,7 +2,11 @@
   "meta": {
     "siteName": "CAFE DEPO",
     "titleSuffix": "CAFE DEPO — Turnov",
-    "description": "A café in the former Turnov railway station building. Hearty breakfasts, a daily lunch menu made from fresh local ingredients, 15 kinds of coffee, homemade cakes. Nádražní 1118, Turnov."
+    "description": "A café in the former Turnov railway station building. Hearty breakfasts, a daily lunch menu, 15 kinds of coffee, homemade cakes. Nádražní 1118, Turnov."
+  },
+  "common": {
+    "skipLink": "Skip to content",
+    "newWindowSuffix": "opens in a new window"
   },
   "nav": {
     "home": "Home",
@@ -28,9 +32,7 @@
     "heroCtaMenu": "Today's menu",
     "heroCtaContact": "Contact & map",
     "boardTitle": "DEPARTURE BOARD",
-    "boardSubtitle": "Opening hours",
-    "todayMenuTitle": "TODAY'S MENU",
-    "todayMenuCta": "Full weekly menu →",
+    "todayMenuTitle": "DAILY MENU",
     "sectionsTitle": "WHAT YOU'LL FIND HERE",
     "breakfastTitle": "BREAKFAST",
     "breakfastText": "Hearty breakfasts to start the journey, served throughout opening hours.",
@@ -42,50 +44,43 @@
     "loungeTitle": "UPSTAIRS LOUNGE",
     "loungeText": "A private room upstairs for celebrations, birthdays, business meetings and press conferences.",
     "loungeCta": "Enquire about the lounge",
-    "mapTitle": "FIND US",
-    "terraceNote": "Outdoor terrace."
+    "mapTitle": "FIND US"
   },
   "menuPage": {
     "title": "LUNCH MENU",
-    "kicker": "VALID",
-    "lunchServing": "Lunch menu served: 11:00–14:45",
-    "soup": "SOUP",
-    "mains": "MAIN COURSES",
-    "allergens": "Allergens",
-    "price": "Price",
-    "noMenu": "NEXT WEEK'S MENU IS BEING PREPARED",
-    "noMenuText": "The current week has just ended. A new menu will be on the board soon.",
+    "servingLabel": "SERVED",
+    "description": "The daily lunch menu is published on Facebook and on menicka.cz. This page has our permanent offer and opening hours.",
     "permanentTitle": "PERMANENT OFFER",
-    "permanentText": "15 kinds of coffee · homemade cakes and pastries · homemade lemonades · Monopol draft beer · hearty breakfasts throughout opening hours",
-    "updated": "Updated",
-    "note": "Note",
-    "onRequest": "available on request from staff"
+    "coffeeTitle": "COFFEE",
+    "coffeeText": "15 kinds, espresso and filter, to stay or to go.",
+    "breakfastTitle": "BREAKFAST",
+    "breakfastText": "Served throughout opening hours.",
+    "cakesTitle": "HOMEMADE CAKES & PASTRIES",
+    "cakesText": "Fresh every day.",
+    "lemonadeTitle": "HOMEMADE LEMONADES",
+    "lemonadeText": "Made in-house.",
+    "beerTitle": "MONOPOL DRAFT BEER",
+    "beerText": "From the Monopol brewery.",
+    "hoursTitle": "OPENING HOURS"
   },
-  "days": {
-    "PO": "MONDAY",
-    "UT": "TUESDAY",
-    "ST": "WEDNESDAY",
-    "CT": "THURSDAY",
-    "PA": "FRIDAY"
-  },
-  "daysShort": {
-    "PO": "MON",
-    "UT": "TUE",
-    "ST": "WED",
-    "CT": "THU",
-    "PA": "FRI"
+  "menuLinks": {
+    "facebookTitle": "TODAY'S MENU ON FACEBOOK",
+    "menickaTitle": "MENU WITHOUT LOGIN",
+    "note": "We publish the menu every morning."
   },
   "about": {
     "title": "ABOUT US",
     "kicker": "THE STORY OF DEPO",
+    "description": "CAFE DEPO is a café in the former Turnov railway station building, run by sisters Pavla Linková and Eliška Konejlová.",
     "lead": "A café in the former Turnov railway station building, run by sisters Pavla Linková and Eliška Konejlová.",
-    "body1": "Hearty breakfasts, a daily lunch menu made from fresh local ingredients, and fifteen kinds of coffee — DEPO works both as a stop along the way and as a destination in itself. Homemade cakes, pastries and lemonades are available, on the terrace or to go.",
+    "body1": "Hearty breakfasts, a daily lunch menu, and fifteen kinds of coffee — DEPO works both as a stop along the way and as a destination in itself. Homemade cakes, pastries and lemonades are available, on the terrace or to go.",
     "body2": "Besides the ground-floor café, we offer an upstairs lounge — for celebrations, birthdays, business meetings and press conferences.",
     "ownersTitle": "RUN BY",
     "ownersText": "Sisters Pavla Linková and Eliška Konejlová."
   },
   "contact": {
     "title": "CONTACT",
+    "description": "Address, phone, email and opening hours for CAFE DEPO — a café in the Turnov railway station building. Enquire about the upstairs lounge.",
     "addressTitle": "ADDRESS",
     "phoneTitle": "PHONE",
     "emailTitle": "EMAIL",
@@ -93,17 +88,18 @@
     "hoursTitle": "OPENING HOURS",
     "mapTitle": "MAP",
     "mapConsentNote": "The map loads from Google Maps and requires cookie consent.",
-    "mapConsentCta": "Show map"
+    "mapConsentCta": "Show map",
+    "loungeTitle": "UPSTAIRS LOUNGE",
+    "loungeText": "A private room for celebrations, birthdays, business meetings and press conferences. Send an enquiry by phone or email and we'll arrange a date."
   },
   "footer": {
     "rights": "All rights reserved.",
     "privacy": "Privacy Policy",
     "cookies": "Cookies",
-    "terms": "Terms & Conditions",
-    "admin": "Demo admin"
+    "terms": "Terms & Conditions"
   },
   "cookie": {
-    "text": "This website uses cookies for basic functionality and traffic analytics (Vercel Analytics).",
+    "text": "This website does not use tracking cookies. The Google Maps embed only loads after your consent; traffic is measured anonymously and without cookies via Vercel Analytics.",
     "accept": "Accept all",
     "reject": "Necessary only",
     "more": "More information",

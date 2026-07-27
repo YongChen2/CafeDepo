@@ -13,8 +13,4 @@ export const OTEVIRACI_DOBA = [
 
 export const VYDEJ_OBEDU = { open: "11:00", close: "14:45" };
 
-/** 0 = pondělí ... 6 = neděle */
-export function dnesniIndex(date = new Date()): number {
-  const jsDay = date.getDay(); // 0 = neděle
-  return jsDay === 0 ? 6 : jsDay - 1;
-}
+export { dnesniIndexPraha as dnesniIndex } from "./date";

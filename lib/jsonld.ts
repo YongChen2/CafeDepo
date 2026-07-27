@@ -1,5 +1,7 @@
 import { SITE } from "./site";
 
+const MENICKA_URL = "https://www.menicka.cz/8771-cafe-depo.html";
+
 // TODO: ověřit u klienta
 const OPENING_HOURS_SPEC = [
   { dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:00", closes: "18:00" },
@@ -12,7 +14,7 @@ export function cafeJsonLd() {
     "@type": "CafeOrCoffeeShop",
     name: SITE.name,
     url: SITE.url,
-    telephone: SITE.phone,
+    telephone: `+420${SITE.phone}`,
     email: SITE.email,
     address: {
       "@type": "PostalAddress",
@@ -28,6 +30,37 @@ export function cafeJsonLd() {
     })),
     servesCuisine: "Czech",
     priceRange: "$$",
+    hasMenu: MENICKA_URL,
+    publicAccess: true,
+    amenityFeature: [
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "Terasa",
+        value: true,
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "Salonek v patře",
+        value: true,
+      },
+    ],
+  };
+}
+
+export function breadcrumbJsonLd(
+  items: { name: string; path: string }[],
+  locale: string,
+) {
+  const prefix = locale === "cs" ? "" : `/${locale}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: `${SITE.url}${prefix}${item.path}`,
+    })),
   };
 }
 

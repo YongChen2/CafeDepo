@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { OpeningHoursBoard } from "@/components/OpeningHoursBoard";
 import { MapEmbed } from "@/components/MapEmbed";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { breadcrumbJsonLd, jsonLdScriptProps } from "@/lib/jsonld";
 import { SITE } from "@/lib/site";
 
 export async function generateMetadata({
@@ -12,7 +13,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "contact" });
-  return { title: t("title") };
+  return { title: t("title"), description: t("description") };
 }
 
 export default async function ContactPage({
@@ -24,6 +25,8 @@ export default async function ContactPage({
   setRequestLocale(locale);
   const t = await getTranslations("contact");
   const hoursT = await getTranslations("hours");
+  const commonT = await getTranslations("common");
+  const navT = await getTranslations("nav");
 
   const mapsQuery = encodeURIComponent(
     `${SITE.streetAddress}, ${SITE.postalCode} ${SITE.addressLocality}`,
@@ -31,6 +34,18 @@ export default async function ContactPage({
 
   return (
     <main className="max-w-5xl mx-auto px-4 py-12 w-full flex flex-col gap-10">
+      <script
+        {...jsonLdScriptProps(
+          breadcrumbJsonLd(
+            [
+              { name: navT("home"), path: "/" },
+              { name: navT("contact"), path: "/kontakt" },
+            ],
+            locale,
+          ),
+        )}
+      />
+
       <h1 className="font-display uppercase tracking-tight text-4xl sm:text-6xl">
         {t("title")}
       </h1>
@@ -38,7 +53,7 @@ export default async function ContactPage({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="ascii-frame p-6 font-mono text-sm flex flex-col gap-5">
           <div>
-            <div className="uppercase opacity-50 text-xs mb-1">
+            <div className="uppercase opacity-60 text-xs mb-1">
               {t("addressTitle")}
             </div>
             <div className="text-lg font-display normal-case tracking-tight">
@@ -51,7 +66,7 @@ export default async function ContactPage({
           </div>
 
           <div>
-            <div className="uppercase opacity-50 text-xs mb-1">
+            <div className="uppercase opacity-60 text-xs mb-1">
               {t("phoneTitle")}
             </div>
             <a href={`tel:+420${SITE.phone}`} className="link-underline hover:text-accent">
@@ -60,7 +75,7 @@ export default async function ContactPage({
           </div>
 
           <div>
-            <div className="uppercase opacity-50 text-xs mb-1">
+            <div className="uppercase opacity-60 text-xs mb-1">
               {t("emailTitle")}
             </div>
             <a href={`mailto:${SITE.email}`} className="link-underline hover:text-accent">
@@ -69,7 +84,7 @@ export default async function ContactPage({
           </div>
 
           <div>
-            <div className="uppercase opacity-50 text-xs mb-1">
+            <div className="uppercase opacity-60 text-xs mb-1">
               {t("socialTitle")}
             </div>
             <div className="flex flex-col gap-1">
@@ -77,6 +92,7 @@ export default async function ContactPage({
                 href={SITE.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`Facebook — ${commonT("newWindowSuffix")}`}
                 className="link-underline hover:text-accent"
               >
                 Facebook — depocafe.cz
@@ -85,6 +101,7 @@ export default async function ContactPage({
                 href={SITE.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`Instagram — ${commonT("newWindowSuffix")}`}
                 className="link-underline hover:text-accent"
               >
                 Instagram — @cafedepo_
@@ -96,6 +113,7 @@ export default async function ContactPage({
             href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={`${t("mapTitle")} — ${commonT("newWindowSuffix")}`}
             className="btn-invert bg-fg text-bg uppercase text-xs px-4 py-3 self-start"
           >
             {t("mapTitle")} →
@@ -109,6 +127,21 @@ export default async function ContactPage({
             consentCta: t("mapConsentCta"),
           }}
         />
+      </div>
+
+      <div className="ascii-frame p-6 flex flex-col gap-3">
+        <h2 className="font-display uppercase text-xl tracking-tight">
+          {t("loungeTitle")}
+        </h2>
+        <p className="font-mono text-sm opacity-80">{t("loungeText")}</p>
+        <div className="flex flex-wrap gap-x-6 gap-y-1 font-mono text-sm pt-1">
+          <a href={`tel:+420${SITE.phone}`} className="link-underline hover:text-accent">
+            {SITE.phoneDisplay}
+          </a>
+          <a href={`mailto:${SITE.email}`} className="link-underline hover:text-accent">
+            {SITE.email}
+          </a>
+        </div>
       </div>
 
       <ScrollReveal>

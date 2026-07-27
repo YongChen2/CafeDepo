@@ -8,8 +8,9 @@ const nextConfig: NextConfig = {
     formats: ["image/webp"],
   },
   experimental: {
-    // Máme dva samostatné "root" layouty (app/[locale] a app/admin), takže
-    // Next doporučuje global-not-found.js pro opravdu nezachycené cesty.
+    // Root layout je definovaný přes top-level dynamický segment
+    // (app/[locale]/layout.tsx), takže Next doporučuje global-not-found.js
+    // pro URL, které vůbec nematchují žádnou route.
     globalNotFound: true,
   },
 };

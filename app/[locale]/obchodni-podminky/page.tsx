@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { breadcrumbJsonLd, jsonLdScriptProps } from "@/lib/jsonld";
 import { SITE } from "@/lib/site";
-
-export const metadata: Metadata = {
-  title: "Obchodní podmínky",
-};
 
 const CS = {
   h1: "OBCHODNÍ PODMÍNKY",
+  metaDescription:
+    "Obchodní podmínky CAFE DEPO — rezervace salonku v patře, storno podmínky, ceny a reklamace.",
   sections: [
     {
       h: "1. Provozovatel",
@@ -34,6 +33,8 @@ const CS = {
 
 const EN = {
   h1: "TERMS & CONDITIONS",
+  metaDescription:
+    "CAFE DEPO terms & conditions — upstairs lounge bookings, cancellation policy, pricing and complaints.",
   sections: [
     {
       h: "1. Operator",
@@ -58,6 +59,16 @@ const EN = {
   ],
 };
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const content = locale === "en" ? EN : CS;
+  return { title: content.h1, description: content.metaDescription };
+}
+
 export default async function TermsPage({
   params,
 }: {
@@ -66,9 +77,22 @@ export default async function TermsPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const content = locale === "en" ? EN : CS;
+  const navT = await getTranslations("nav");
 
   return (
     <main className="max-w-3xl mx-auto px-4 py-12 w-full flex flex-col gap-8">
+      <script
+        {...jsonLdScriptProps(
+          breadcrumbJsonLd(
+            [
+              { name: navT("home"), path: "/" },
+              { name: content.h1, path: "/obchodni-podminky" },
+            ],
+            locale,
+          ),
+        )}
+      />
+
       <h1 className="font-display uppercase tracking-tight text-3xl sm:text-5xl">
         {content.h1}
       </h1>

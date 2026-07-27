@@ -42,9 +42,6 @@ export async function generateMetadata({
       type: "website",
       locale,
     },
-    icons: {
-      icon: "/favicon.ico",
-    },
   };
 }
 

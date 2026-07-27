@@ -37,6 +37,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# zdrojové/neupravené fotky před konverzí do public/images (nejde na web)
+/_zdrojove-fotky
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

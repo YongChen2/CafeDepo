@@ -25,6 +25,11 @@ const CS = {
       ucel: "Analytika návštěvnosti webu. Nepoužívá cookies ani neukládá osobní identifikátory.",
       doba: "—",
     },
+    {
+      name: "Google Maps (mapa v kontaktu)",
+      ucel: "Vloží se až po vašem souhlasu s cookies. Google může při zobrazení mapy nastavit vlastní cookies.",
+      doba: "dle Google",
+    },
   ],
   outro:
     "Cookies můžete kdykoliv smazat nebo zablokovat v nastavení svého prohlížeče. Nezbytné cookies (přihlášení do administrace) jsou vyžadovány pro funkčnost webu a nevyžadují souhlas dle zákona o elektronických komunikacích.",
@@ -48,6 +53,11 @@ const EN = {
       name: "Vercel Analytics",
       ucel: "Website traffic analytics. Does not use cookies or store personal identifiers.",
       doba: "—",
+    },
+    {
+      name: "Google Maps (contact page map)",
+      ucel: "Embedded only after you give cookie consent. Google may set its own cookies when the map is displayed.",
+      doba: "per Google",
     },
   ],
   outro:

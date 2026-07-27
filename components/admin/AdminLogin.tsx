@@ -62,7 +62,7 @@ export function AdminLogin() {
           </label>
 
           {chyba && (
-            <p className="text-accent text-sm border border-accent p-2">
+            <p className="text-fg text-sm border border-accent p-2" role="alert">
               {chyba}
             </p>
           )}
@@ -87,10 +87,10 @@ export function AdminLogin() {
           </p>
           <div className="ascii-frame p-4 text-xs flex flex-col gap-1">
             <span>
-              UŽIVATEL: <span className="text-accent">CafeStop</span>
+              UŽIVATEL: <span className="font-bold">CafeStop</span>
             </span>
             <span>
-              HESLO: <span className="text-accent">CafeStop123</span>
+              HESLO: <span className="font-bold">CafeStop123</span>
             </span>
           </div>
           <Link

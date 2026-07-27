@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { OpeningHoursBoard } from "@/components/OpeningHoursBoard";
-import { PlaceholderImage } from "@/components/PlaceholderImage";
+import { MapEmbed } from "@/components/MapEmbed";
 import { SITE } from "@/lib/site";
 
 export async function generateMetadata({
@@ -101,9 +101,12 @@ export default async function ContactPage({
           </a>
         </div>
 
-        <PlaceholderImage
-          label="mapa — statický snímek okolí nádraží"
-          aspect="aspect-[4/3]"
+        <MapEmbed
+          className="aspect-[4/3]"
+          labels={{
+            consentNote: t("mapConsentNote"),
+            consentCta: t("mapConsentCta"),
+          }}
         />
       </div>
 

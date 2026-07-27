@@ -94,7 +94,7 @@ export function MenuDayEditor({
             </div>
             <button
               onClick={() => onOdeberHlavni(jidlo.id)}
-              className="text-accent text-xs uppercase text-left"
+              className="text-fg underline text-xs uppercase text-left"
             >
               Odebrat jídlo
             </button>

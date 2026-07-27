@@ -3,20 +3,30 @@
 import { usePathname } from "@/i18n/navigation";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export function LanguageSwitch() {
   const pathname = usePathname();
   const activeLocale = useLocale();
+  const t = useTranslations("nav");
 
   return (
-    <div className="flex items-center gap-1 font-mono text-xs uppercase">
+    <div
+      role="group"
+      aria-label={t("languageSwitch")}
+      className="flex items-center gap-1 font-mono text-xs uppercase"
+    >
       {routing.locales.map((loc, i) => (
         <span key={loc} className="flex items-center gap-1">
-          {i > 0 && <span className="opacity-40">/</span>}
+          {i > 0 && (
+            <span className="opacity-40" aria-hidden="true">
+              /
+            </span>
+          )}
           <Link
             href={pathname}
             locale={loc}
+            aria-current={loc === activeLocale ? "true" : undefined}
             className={
               loc === activeLocale
                 ? "text-accent"

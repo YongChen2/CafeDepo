@@ -9,7 +9,8 @@
     "menu": "Menu",
     "about": "O nás",
     "contact": "Kontakt",
-    "languageSwitch": "Jazyk"
+    "languageSwitch": "Jazyk",
+    "ariaLabel": "Hlavní navigace"
   },
   "hours": {
     "title": "OTEVÍRACÍ DOBA",
@@ -90,7 +91,9 @@
     "emailTitle": "E-MAIL",
     "socialTitle": "SOCIÁLNÍ SÍTĚ",
     "hoursTitle": "OTEVÍRACÍ DOBA",
-    "mapTitle": "MAPA"
+    "mapTitle": "MAPA",
+    "mapConsentNote": "Mapa se načítá z Google Maps a vyžaduje souhlas s cookies.",
+    "mapConsentCta": "Zobrazit mapu"
   },
   "footer": {
     "rights": "Všechna práva vyhrazena.",
@@ -103,7 +106,8 @@
     "text": "Tento web používá cookies pro základní fungování a analytiku návštěvnosti (Vercel Analytics).",
     "accept": "Přijmout vše",
     "reject": "Pouze nutné",
-    "more": "Více informací"
+    "more": "Více informací",
+    "ariaLabel": "Souhlas s používáním cookies"
   },
   "legal": {
     "placeholderIco": "[DOPLNIT: IČO]",

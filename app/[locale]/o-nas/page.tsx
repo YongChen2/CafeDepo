@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PlaceholderImage } from "@/components/PlaceholderImage";
 
@@ -33,10 +34,21 @@ export default async function AboutPage({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <PlaceholderImage
-          label="exterier/nadrazi-01.webp — budova nádraží / vstup"
-          aspect="aspect-[3/2]"
-        />
+        <div className="relative aspect-[3/2] photo-industrial">
+          <Image
+            src="/images/exterier/nadrazi-01.webp"
+            alt={
+              locale === "en"
+                ? "Entrance to CAFE DEPO in the former Turnov railway station building, with the illuminated menu board by the door"
+                : "Vstup do CAFE DEPO v budově bývalého turnovského nádraží, u dveří tabule s denní nabídkou"
+            }
+            fill
+            priority
+            fetchPriority="high"
+            sizes="(max-width: 768px) 100vw, 512px"
+            className="object-cover"
+          />
+        </div>
         <div className="flex flex-col gap-4 font-mono text-base">
           <p className="text-lg">{t("lead")}</p>
           <p className="opacity-80">{t("body1")}</p>

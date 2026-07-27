@@ -9,7 +9,8 @@
     "menu": "Menu",
     "about": "About",
     "contact": "Contact",
-    "languageSwitch": "Language"
+    "languageSwitch": "Language",
+    "ariaLabel": "Main navigation"
   },
   "hours": {
     "title": "OPENING HOURS",
@@ -90,7 +91,9 @@
     "emailTitle": "EMAIL",
     "socialTitle": "SOCIAL MEDIA",
     "hoursTitle": "OPENING HOURS",
-    "mapTitle": "MAP"
+    "mapTitle": "MAP",
+    "mapConsentNote": "The map loads from Google Maps and requires cookie consent.",
+    "mapConsentCta": "Show map"
   },
   "footer": {
     "rights": "All rights reserved.",
@@ -103,7 +106,8 @@
     "text": "This website uses cookies for basic functionality and traffic analytics (Vercel Analytics).",
     "accept": "Accept all",
     "reject": "Necessary only",
-    "more": "More information"
+    "more": "More information",
+    "ariaLabel": "Cookie consent"
   },
   "legal": {
     "placeholderIco": "[FILL IN: Company ID]",

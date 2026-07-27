@@ -10,7 +10,10 @@ export function Header() {
     <header className="border-b border-fg bg-bg">
       <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
         <Logo className="text-2xl" />
-        <nav className="flex items-center gap-4 sm:gap-6 font-mono text-xs sm:text-sm uppercase">
+        <nav
+          aria-label={t("ariaLabel")}
+          className="flex items-center gap-4 sm:gap-6 font-mono text-xs sm:text-sm uppercase"
+        >
           <Link href="/" className="hover:text-accent">
             {t("home")}
           </Link>

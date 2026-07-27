@@ -1,7 +1,9 @@
+import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { OpeningHoursBoard } from "@/components/OpeningHoursBoard";
 import { PlaceholderImage } from "@/components/PlaceholderImage";
+import { MapEmbed } from "@/components/MapEmbed";
 import { nactiMenu } from "@/lib/menu-store";
 import { najdiDnesniDen, jeAktualniTyden, formatCena } from "@/lib/menu-utils";
 import { SITE } from "@/lib/site";
@@ -17,6 +19,7 @@ export default async function HomePage({
   const t = await getTranslations("home");
   const hoursT = await getTranslations("hours");
   const menuT = await getTranslations("menuPage");
+  const contactT = await getTranslations("contact");
 
   const menu = await nactiMenu();
   const aktualni = jeAktualniTyden(menu);
@@ -84,7 +87,7 @@ export default async function HomePage({
             {t("todayMenuTitle")}
           </h2>
           <div className="ascii-frame">
-            <div className="p-4 bg-fg text-bg flex items-center justify-between font-mono text-xs uppercase">
+            <div className="p-4 bg-fg text-bg flex flex-wrap items-center justify-between gap-x-3 gap-y-1 font-mono text-xs uppercase">
               <span>{menuT("kicker")}</span>
               <span className="tabular-nums">
                 {menu.platnostOd} — {menu.platnostDo}
@@ -146,15 +149,47 @@ export default async function HomePage({
           </h2>
           <div className="hairline-grid grid-cols-1 sm:grid-cols-3 bg-bg">
             {[
-              { title: t("breakfastTitle"), text: t("breakfastText") },
-              { title: t("coffeeTitle"), text: t("coffeeText") },
-              { title: t("cakeTitle"), text: t("cakeText") },
+              {
+                title: t("breakfastTitle"),
+                text: t("breakfastText"),
+                placeholder: "jidlo/snidane-01.webp — vydatná snídaně",
+              },
+              {
+                title: t("coffeeTitle"),
+                text: t("coffeeText"),
+                placeholder: "jidlo/kava-01.webp — jeden z 15 druhů kávy",
+              },
+              {
+                title: t("cakeTitle"),
+                text: t("cakeText"),
+                image: "/images/jidlo/dort-01.webp",
+                alt:
+                  locale === "en"
+                    ? "Homemade pastries and cakes on a café table — macarons, tarts and cold drinks"
+                    : "Domácí zákusky a dorty na kavárenském stole — makronky, tartaletky a studené nápoje",
+              },
             ].map((s) => (
-              <div key={s.title} className="bg-fg text-bg p-6 flex flex-col gap-3">
-                <h3 className="font-display uppercase text-xl tracking-tight">
-                  {s.title}
-                </h3>
-                <p className="font-mono text-sm opacity-80">{s.text}</p>
+              <div key={s.title} className="bg-fg text-bg flex flex-col gap-3">
+                {s.image ? (
+                  <div className="relative aspect-[4/3] photo-industrial">
+                    <Image
+                      src={s.image}
+                      alt={s.alt ?? ""}
+                      fill
+                      loading="lazy"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 341px"
+                      className="object-cover"
+                    />
+                  </div>
+                ) : (
+                  <PlaceholderImage label={s.placeholder ?? ""} />
+                )}
+                <div className="p-6 pt-3 flex flex-col gap-3">
+                  <h3 className="font-display uppercase text-xl tracking-tight">
+                    {s.title}
+                  </h3>
+                  <p className="font-mono text-sm opacity-80">{s.text}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -167,7 +202,20 @@ export default async function HomePage({
           {t("galleryTitle")}
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-1">
-          <PlaceholderImage label="interier/sal-01.webp — hlavní sál" />
+          <div className="relative aspect-[4/3] photo-industrial">
+            <Image
+              src="/images/interier/sal-01.webp"
+              alt={
+                locale === "en"
+                  ? "Main seating area of CAFE DEPO with wooden beams, plants and armchairs"
+                  : "Hlavní sál kavárny CAFE DEPO s dřevěnými trámy, zelení a křesly"
+              }
+              fill
+              loading="lazy"
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 256px"
+              className="object-cover"
+            />
+          </div>
           <PlaceholderImage label="interier/bar-01.webp — barový pult" />
           <PlaceholderImage label="interier/detail-01.webp — detail / dekor" />
           <PlaceholderImage label="exterier/terasa-01.webp — venkovní terasa" />
@@ -224,9 +272,12 @@ export default async function HomePage({
                 {t("mapTitle")} →
               </a>
             </div>
-            <PlaceholderImage
-              label="mapa — statický snímek okolí nádraží"
-              aspect="aspect-[4/3]"
+            <MapEmbed
+              className="aspect-[4/3]"
+              labels={{
+                consentNote: contactT("mapConsentNote"),
+                consentCta: contactT("mapConsentCta"),
+              }}
             />
           </div>
         </div>

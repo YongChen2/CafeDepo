@@ -18,7 +18,7 @@ export function OpeningHoursBoard({
 
   return (
     <div className="ascii-frame">
-      <div className="flex items-center justify-between p-3 border-b border-fg bg-fg text-bg">
+      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 p-3 border-b border-fg bg-fg text-bg">
         <span className="font-display uppercase text-sm tracking-tight">
           {labels.title}
         </span>
@@ -34,7 +34,9 @@ export function OpeningHoursBoard({
               key={radek.den}
               className={
                 "flex items-center justify-between px-3 py-2 font-mono text-sm " +
-                (jeDnes ? "bg-accent text-bg" : "bg-bg text-fg")
+                (jeDnes
+                  ? "bg-fg text-bg border-l-4 border-accent"
+                  : "bg-bg text-fg")
               }
             >
               <span className="w-24 shrink-0 font-display text-base">
@@ -47,7 +49,8 @@ export function OpeningHoursBoard({
                 {zavreno ? labels.closed : `${radek.open}—${radek.close}`}
               </span>
               {jeDnes && (
-                <span className="ml-3 uppercase text-xs border border-bg px-1">
+                <span className="ml-3 flex items-center gap-1.5 uppercase text-xs border border-bg px-1">
+                  <span className="w-1.5 h-1.5 bg-accent" aria-hidden="true" />
                   {labels.today}
                 </span>
               )}

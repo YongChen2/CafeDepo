@@ -30,7 +30,7 @@ export function MenuTable({
               key={den.den}
               className={
                 jeDnes
-                  ? "bg-accent text-bg flex flex-col"
+                  ? "bg-fg text-bg flex flex-col border-t-4 border-accent"
                   : "bg-bg text-fg flex flex-col"
               }
             >

@@ -31,7 +31,11 @@ export function CookieConsent() {
   if (consent !== null) return null;
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 border-t border-fg bg-bg">
+    <div
+      role="region"
+      aria-label={t("ariaLabel")}
+      className="fixed bottom-0 inset-x-0 z-50 border-t border-fg bg-bg"
+    >
       <div className="max-w-5xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 font-mono text-xs">
         <p className="flex-1">
           {t("text")}{" "}

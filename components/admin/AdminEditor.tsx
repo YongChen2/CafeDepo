@@ -195,7 +195,9 @@ export function AdminEditor({ initialMenu }: { initialMenu: TydenniMenu }) {
       </section>
 
       {chyba && (
-        <p className="text-accent text-sm border border-accent p-3">{chyba}</p>
+        <p className="text-fg text-sm border border-accent p-3" role="alert">
+          {chyba}
+        </p>
       )}
 
       <button

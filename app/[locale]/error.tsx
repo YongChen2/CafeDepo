@@ -27,7 +27,7 @@ export default function ErrorPage({
         </p>
         <button
           onClick={reset}
-          className="bg-fg text-bg font-display uppercase px-6 py-4 tracking-tight"
+          className="btn-invert bg-fg text-bg font-display uppercase px-6 py-4 tracking-tight"
         >
           Zkusit znovu
         </button>

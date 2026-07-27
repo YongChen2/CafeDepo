@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { PlaceholderImage } from "@/components/PlaceholderImage";
+import { SmartImage } from "@/components/SmartImage";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 export async function generateMetadata({
   params,
@@ -34,21 +34,20 @@ export default async function AboutPage({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div className="relative aspect-[3/2] photo-industrial">
-          <Image
-            src="/images/exterier/nadrazi-01.webp"
-            alt={
-              locale === "en"
-                ? "Entrance to CAFE DEPO in the former Turnov railway station building, with the illuminated menu board by the door"
-                : "Vstup do CAFE DEPO v budově bývalého turnovského nádraží, u dveří tabule s denní nabídkou"
-            }
-            fill
-            priority
-            fetchPriority="high"
-            sizes="(max-width: 768px) 100vw, 512px"
-            className="object-cover"
-          />
-        </div>
+        <SmartImage
+          src="/images/exterier/nadrazi-01.webp"
+          seed="exterier/nadrazi-01"
+          kind="exterier"
+          aspect="aspect-[3/2]"
+          alt={
+            locale === "en"
+              ? "Entrance to CAFE DEPO in the former Turnov railway station building, with the illuminated menu board by the door"
+              : "Vstup do CAFE DEPO v budově bývalého turnovského nádraží, u dveří tabule s denní nabídkou"
+          }
+          priority
+          fetchPriority="high"
+          sizes="(max-width: 768px) 100vw, 512px"
+        />
         <div className="flex flex-col gap-4 font-mono text-base">
           <p className="text-lg">{t("lead")}</p>
           <p className="opacity-80">{t("body1")}</p>
@@ -56,19 +55,29 @@ export default async function AboutPage({
         </div>
       </div>
 
-      <div className="ascii-frame p-6 flex flex-col sm:flex-row gap-6 items-start sm:items-center">
-        <PlaceholderImage
-          label="logo/sestry-01.webp — Pavla Linková & Eliška Konejlová"
-          aspect="aspect-square"
-          className="w-32 shrink-0"
-        />
+      <ScrollReveal className="ascii-frame p-6 flex flex-col sm:flex-row gap-6 items-start sm:items-center">
+        <div className="w-32 shrink-0">
+          <SmartImage
+            src="/images/logo/sestry-01.webp"
+            seed="logo/sestry-01"
+            kind="logo"
+            aspect="aspect-square"
+            label="logo/sestry-01.webp — Pavla Linková & Eliška Konejlová"
+            alt={
+              locale === "en"
+                ? "Sisters Pavla Linková and Eliška Konejlová"
+                : "Sestry Pavla Linková a Eliška Konejlová"
+            }
+            sizes="128px"
+          />
+        </div>
         <div>
           <h2 className="font-display uppercase text-lg tracking-tight">
             {t("ownersTitle")}
           </h2>
           <p className="font-mono text-sm opacity-80 mt-1">{t("ownersText")}</p>
         </div>
-      </div>
+      </ScrollReveal>
     </main>
   );
 }

@@ -1,5 +1,6 @@
 import type { DenZkratka, TydenniMenu } from "@/lib/types";
 import { formatCena, formatDatumCz } from "@/lib/menu-utils";
+import { SplitFlap } from "@/components/SplitFlap";
 
 export type MenuTableLabels = {
   soup: string;
@@ -35,7 +36,18 @@ export function MenuTable({
               }
             >
               <div className="p-3 font-display uppercase text-sm tracking-tight border-b border-fg/20">
-                <div>{labels.days[den.den]}</div>
+                <div className="flex items-center gap-2">
+                  <SplitFlap
+                    text={labels.days[den.den]}
+                    seed={`menu-day-${den.den}`}
+                  />
+                  {jeDnes && (
+                    <span
+                      className="w-1.5 h-1.5 bg-accent blink-square shrink-0"
+                      aria-hidden="true"
+                    />
+                  )}
+                </div>
                 <div className="font-mono text-xs opacity-70 tabular-nums">
                   {formatDatumCz(den.datum)}
                 </div>

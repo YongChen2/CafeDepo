@@ -14,16 +14,16 @@ export function Header() {
           aria-label={t("ariaLabel")}
           className="flex items-center gap-4 sm:gap-6 font-mono text-xs sm:text-sm uppercase"
         >
-          <Link href="/" className="hover:text-accent">
+          <Link href="/" className="link-underline hover:text-accent">
             {t("home")}
           </Link>
-          <Link href="/menu" className="hover:text-accent">
+          <Link href="/menu" className="link-underline hover:text-accent">
             {t("menu")}
           </Link>
-          <Link href="/o-nas" className="hover:text-accent">
+          <Link href="/o-nas" className="link-underline hover:text-accent">
             {t("about")}
           </Link>
-          <Link href="/kontakt" className="hover:text-accent">
+          <Link href="/kontakt" className="link-underline hover:text-accent">
             {t("contact")}
           </Link>
           <LanguageSwitch />

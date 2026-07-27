@@ -1,9 +1,10 @@
-import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { OpeningHoursBoard } from "@/components/OpeningHoursBoard";
-import { PlaceholderImage } from "@/components/PlaceholderImage";
+import { SmartImage } from "@/components/SmartImage";
 import { MapEmbed } from "@/components/MapEmbed";
+import { Ticker } from "@/components/Ticker";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import { nactiMenu } from "@/lib/menu-store";
 import { najdiDnesniDen, jeAktualniTyden, formatCena } from "@/lib/menu-utils";
 import { SITE } from "@/lib/site";
@@ -49,7 +50,7 @@ export default async function HomePage({
           <div className="flex flex-wrap gap-3 pt-2">
             <Link
               href="/menu"
-              className="bg-fg text-bg font-display uppercase px-6 py-4 tracking-tight"
+              className="btn-invert bg-fg text-bg font-display uppercase px-6 py-4 tracking-tight"
             >
               {t("heroCtaMenu")}
             </Link>
@@ -63,8 +64,10 @@ export default async function HomePage({
         </div>
       </section>
 
+      <Ticker text="SNÍDANĚ /// 15 DRUHŮ KÁVY /// DOMÁCÍ DORTY /// POLEDNÍ MENU 11:00–14:45 /// TERASA /// SALONEK V PATŘE ///" />
+
       {/* ODJEZDOVÁ TABULE + DNEŠNÍ MENU */}
-      <section className="max-w-5xl mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
+      <ScrollReveal className="max-w-5xl mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
         <div>
           <h2 className="font-display uppercase text-2xl tracking-tight mb-4">
             {t("boardTitle")}
@@ -132,17 +135,17 @@ export default async function HomePage({
               )}
               <Link
                 href="/menu"
-                className="text-accent uppercase text-xs pt-2 inline-block"
+                className="link-underline text-accent uppercase text-xs pt-2 inline-block"
               >
                 {t("todayMenuCta")}
               </Link>
             </div>
           </div>
         </div>
-      </section>
+      </ScrollReveal>
 
       {/* SNÍDANĚ / KÁVA / DORTY */}
-      <section className="border-y border-fg bg-fg text-bg">
+      <ScrollReveal className="border-y border-fg bg-fg text-bg">
         <div className="max-w-5xl mx-auto px-4 py-12">
           <h2 className="font-display uppercase text-2xl tracking-tight mb-8">
             {t("sectionsTitle")}
@@ -152,17 +155,31 @@ export default async function HomePage({
               {
                 title: t("breakfastTitle"),
                 text: t("breakfastText"),
-                placeholder: "jidlo/snidane-01.webp — vydatná snídaně",
+                src: "/images/jidlo/snidane-01.webp",
+                seed: "jidlo/snidane-01",
+                kind: "jidlo" as const,
+                alt:
+                  locale === "en"
+                    ? "Hearty breakfast at CAFE DEPO"
+                    : "Vydatná snídaně v CAFE DEPO",
               },
               {
                 title: t("coffeeTitle"),
                 text: t("coffeeText"),
-                placeholder: "jidlo/kava-01.webp — jeden z 15 druhů kávy",
+                src: "/images/jidlo/kava-01.webp",
+                seed: "jidlo/kava-01",
+                kind: "kava" as const,
+                alt:
+                  locale === "en"
+                    ? "One of 15 kinds of coffee at CAFE DEPO"
+                    : "Jeden z 15 druhů kávy v CAFE DEPO",
               },
               {
                 title: t("cakeTitle"),
                 text: t("cakeText"),
-                image: "/images/jidlo/dort-01.webp",
+                src: "/images/jidlo/dort-01.webp",
+                seed: "jidlo/dort-01",
+                kind: "dort" as const,
                 alt:
                   locale === "en"
                     ? "Homemade pastries and cakes on a café table — macarons, tarts and cold drinks"
@@ -170,20 +187,14 @@ export default async function HomePage({
               },
             ].map((s) => (
               <div key={s.title} className="bg-fg text-bg flex flex-col gap-3">
-                {s.image ? (
-                  <div className="relative aspect-[4/3] photo-industrial">
-                    <Image
-                      src={s.image}
-                      alt={s.alt ?? ""}
-                      fill
-                      loading="lazy"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 341px"
-                      className="object-cover"
-                    />
-                  </div>
-                ) : (
-                  <PlaceholderImage label={s.placeholder ?? ""} />
-                )}
+                <SmartImage
+                  src={s.src}
+                  alt={s.alt}
+                  kind={s.kind}
+                  seed={s.seed}
+                  aspect="aspect-[4/3]"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 341px"
+                />
                 <div className="p-6 pt-3 flex flex-col gap-3">
                   <h3 className="font-display uppercase text-xl tracking-tight">
                     {s.title}
@@ -194,40 +205,63 @@ export default async function HomePage({
             ))}
           </div>
         </div>
-      </section>
+      </ScrollReveal>
 
       {/* GALERIE */}
-      <section className="max-w-5xl mx-auto px-4 py-12 w-full">
+      <ScrollReveal className="max-w-5xl mx-auto px-4 py-12 w-full">
         <h2 className="font-display uppercase text-2xl tracking-tight mb-6">
           {t("galleryTitle")}
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-1">
-          <div className="relative aspect-[4/3] photo-industrial">
-            <Image
-              src="/images/interier/sal-01.webp"
-              alt={
-                locale === "en"
-                  ? "Main seating area of CAFE DEPO with wooden beams, plants and armchairs"
-                  : "Hlavní sál kavárny CAFE DEPO s dřevěnými trámy, zelení a křesly"
-              }
-              fill
-              loading="lazy"
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 256px"
-              className="object-cover"
-            />
-          </div>
-          <PlaceholderImage label="interier/bar-01.webp — barový pult" />
-          <PlaceholderImage label="interier/detail-01.webp — detail / dekor" />
-          <PlaceholderImage label="exterier/terasa-01.webp — venkovní terasa" />
+          <SmartImage
+            src="/images/interier/sal-01.webp"
+            seed="interier/sal-01"
+            kind="interier"
+            alt={
+              locale === "en"
+                ? "Main seating area of CAFE DEPO with wooden beams, plants and armchairs"
+                : "Hlavní sál kavárny CAFE DEPO s dřevěnými trámy, zelení a křesly"
+            }
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 256px"
+          />
+          <SmartImage
+            src="/images/interier/bar-01.webp"
+            seed="interier/bar-01"
+            kind="interier"
+            label="interier/bar-01.webp — barový pult"
+            alt={locale === "en" ? "Coffee bar counter" : "Barový pult"}
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 256px"
+          />
+          <SmartImage
+            src="/images/interier/detail-01.webp"
+            seed="interier/detail-01"
+            kind="interier"
+            label="interier/detail-01.webp — detail / dekor"
+            alt={locale === "en" ? "Interior decor detail" : "Detail interiéru / dekor"}
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 256px"
+          />
+          <SmartImage
+            src="/images/exterier/terasa-01.webp"
+            seed="exterier/terasa-01"
+            kind="exterier"
+            label="exterier/terasa-01.webp — venkovní terasa"
+            alt={locale === "en" ? "Outdoor terrace" : "Venkovní terasa"}
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 256px"
+          />
         </div>
-      </section>
+      </ScrollReveal>
 
       {/* SALONEK */}
-      <section className="border-t border-fg">
+      <ScrollReveal className="border-t border-fg">
         <div className="max-w-5xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <PlaceholderImage
-            label="interier/salonek-01.webp — salonek v patře"
+          <SmartImage
+            src="/images/interier/salonek-01.webp"
+            seed="interier/salonek-01"
+            kind="interier"
             aspect="aspect-[3/2]"
+            label="interier/salonek-01.webp — salonek v patře"
+            alt={locale === "en" ? "Upstairs lounge" : "Salonek v patře"}
+            sizes="(max-width: 768px) 100vw, 512px"
           />
           <div className="flex flex-col gap-4">
             <h2 className="font-display uppercase text-2xl tracking-tight">
@@ -236,16 +270,16 @@ export default async function HomePage({
             <p className="font-mono text-sm opacity-80">{t("loungeText")}</p>
             <Link
               href="/kontakt"
-              className="bg-fg text-bg font-display uppercase px-6 py-4 tracking-tight self-start"
+              className="btn-invert bg-fg text-bg font-display uppercase px-6 py-4 tracking-tight self-start"
             >
               {t("loungeCta")}
             </Link>
           </div>
         </div>
-      </section>
+      </ScrollReveal>
 
       {/* MAPA / KONTAKT */}
-      <section className="border-t border-fg bg-bg-alt">
+      <ScrollReveal className="border-t border-fg bg-bg-alt">
         <div className="max-w-5xl mx-auto px-4 py-12">
           <h2 className="font-display uppercase text-2xl tracking-tight mb-6">
             {t("mapTitle")}
@@ -257,17 +291,17 @@ export default async function HomePage({
               <span>
                 {SITE.postalCode} {SITE.addressLocality}
               </span>
-              <a href={`tel:+420${SITE.phone}`} className="hover:text-accent">
+              <a href={`tel:+420${SITE.phone}`} className="link-underline hover:text-accent">
                 {SITE.phoneDisplay}
               </a>
-              <a href={`mailto:${SITE.email}`} className="hover:text-accent">
+              <a href={`mailto:${SITE.email}`} className="link-underline hover:text-accent">
                 {SITE.email}
               </a>
               <a
                 href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent uppercase text-xs pt-2"
+                className="link-underline text-accent uppercase text-xs pt-2"
               >
                 {t("mapTitle")} →
               </a>
@@ -281,7 +315,7 @@ export default async function HomePage({
             />
           </div>
         </div>
-      </section>
+      </ScrollReveal>
     </main>
   );
 }

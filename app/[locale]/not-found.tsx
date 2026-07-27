@@ -18,7 +18,7 @@ export default function NotFound() {
         </p>
         <Link
           href="/"
-          className="bg-fg text-bg font-display uppercase px-6 py-4 tracking-tight"
+          className="btn-invert bg-fg text-bg font-display uppercase px-6 py-4 tracking-tight"
         >
           Zpět na domů
         </Link>

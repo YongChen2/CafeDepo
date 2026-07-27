@@ -1,9 +1,12 @@
 # Fotky pro CAFE DEPO — seznam k nafocení / nakopírování
 
 ✅ = reálná fotka je nasazená na webu (viz `public/images/...`).
-⬜ = zatím typografický placeholder (`components/PlaceholderImage.tsx`,
-barva `#EAE8E3` s křížkem a popiskem) — nahraď skutečnou fotkou stejného
-názvu a uprav odpovídající místo v kódu (seznam souborů dole).
+⬜ = zatím procedurální SVG placeholder — `components/SmartImage.tsx`
+zjišťuje existenci souboru na serveru (`fs.existsSync`, build/render čas,
+nikdy v prohlížeči) a bez souboru vykreslí `components/PlaceholderImage.tsx`
+(halftone rastr, kompozice podle druhu fotky, diagonální pás
+"PLACEHOLDER /// MÍSTO PRO REÁLNOU FOTOGRAFII"). **Výměna za reálnou fotku
+= jen nahrát soubor pod stejný název, nula změn v kódu.**
 
 Až budou další fotky k dispozici, ulož je přesně pod tyto názvy do
 `public/images/...`. Formát: **WebP**, srovnané na šířku dle doporučení

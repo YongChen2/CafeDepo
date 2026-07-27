@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { OpeningHoursBoard } from "@/components/OpeningHoursBoard";
 import { MapEmbed } from "@/components/MapEmbed";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import { SITE } from "@/lib/site";
 
 export async function generateMetadata({
@@ -53,7 +54,7 @@ export default async function ContactPage({
             <div className="uppercase opacity-50 text-xs mb-1">
               {t("phoneTitle")}
             </div>
-            <a href={`tel:+420${SITE.phone}`} className="hover:text-accent">
+            <a href={`tel:+420${SITE.phone}`} className="link-underline hover:text-accent">
               {SITE.phoneDisplay}
             </a>
           </div>
@@ -62,7 +63,7 @@ export default async function ContactPage({
             <div className="uppercase opacity-50 text-xs mb-1">
               {t("emailTitle")}
             </div>
-            <a href={`mailto:${SITE.email}`} className="hover:text-accent">
+            <a href={`mailto:${SITE.email}`} className="link-underline hover:text-accent">
               {SITE.email}
             </a>
           </div>
@@ -76,7 +77,7 @@ export default async function ContactPage({
                 href={SITE.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-accent"
+                className="link-underline hover:text-accent"
               >
                 Facebook — depocafe.cz
               </a>
@@ -84,7 +85,7 @@ export default async function ContactPage({
                 href={SITE.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-accent"
+                className="link-underline hover:text-accent"
               >
                 Instagram — @cafedepo_
               </a>
@@ -95,7 +96,7 @@ export default async function ContactPage({
             href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-fg text-bg uppercase text-xs px-4 py-3 self-start"
+            className="btn-invert bg-fg text-bg uppercase text-xs px-4 py-3 self-start"
           >
             {t("mapTitle")} →
           </a>
@@ -110,7 +111,7 @@ export default async function ContactPage({
         />
       </div>
 
-      <div>
+      <ScrollReveal>
         <h2 className="font-display uppercase text-2xl tracking-tight mb-4">
           {t("hoursTitle")}
         </h2>
@@ -125,7 +126,7 @@ export default async function ContactPage({
             today: hoursT("today"),
           }}
         />
-      </div>
+      </ScrollReveal>
     </main>
   );
 }

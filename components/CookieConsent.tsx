@@ -39,7 +39,7 @@ export function CookieConsent() {
       <div className="max-w-5xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 font-mono text-xs">
         <p className="flex-1">
           {t("text")}{" "}
-          <Link href="/cookies" className="underline hover:text-accent">
+          <Link href="/cookies" className="link-underline hover:text-accent">
             {t("more")}
           </Link>
         </p>

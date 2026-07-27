@@ -18,13 +18,13 @@ export function Footer() {
           </div>
           <div>
             <div className="uppercase opacity-50 mb-2">{c("phoneTitle")}</div>
-            <a href="tel:+420776620290" className="hover:text-accent">
+            <a href="tel:+420776620290" className="link-underline hover:text-accent">
               776 620 290
             </a>
             <div className="uppercase opacity-50 mt-3 mb-2">
               {c("emailTitle")}
             </div>
-            <a href="mailto:info@depocafe.cz" className="hover:text-accent">
+            <a href="mailto:info@depocafe.cz" className="link-underline hover:text-accent">
               info@depocafe.cz
             </a>
           </div>
@@ -35,7 +35,7 @@ export function Footer() {
                 href="https://www.facebook.com/depocafe.cz"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-accent"
+                className="link-underline hover:text-accent"
               >
                 Facebook
               </a>
@@ -43,7 +43,7 @@ export function Footer() {
                 href="https://www.instagram.com/cafedepo_"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-accent"
+                className="link-underline hover:text-accent"
               >
                 Instagram
               </a>
@@ -56,16 +56,16 @@ export function Footer() {
             © {year} CAFE DEPO — {t("rights")}
           </span>
           <div className="flex flex-wrap gap-4 uppercase">
-            <Link href="/ochrana-osobnich-udaju" className="hover:text-accent">
+            <Link href="/ochrana-osobnich-udaju" className="link-underline hover:text-accent">
               {t("privacy")}
             </Link>
-            <Link href="/cookies" className="hover:text-accent">
+            <Link href="/cookies" className="link-underline hover:text-accent">
               {t("cookies")}
             </Link>
-            <Link href="/obchodni-podminky" className="hover:text-accent">
+            <Link href="/obchodni-podminky" className="link-underline hover:text-accent">
               {t("terms")}
             </Link>
-            <NextLink href="/admin/demo" className="hover:text-accent">
+            <NextLink href="/admin/demo" className="link-underline hover:text-accent">
               {t("admin")}
             </NextLink>
           </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { MenuTable } from "@/components/MenuTable";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import { nactiMenu } from "@/lib/menu-store";
 import { dnesniDatum, jeMenuProsle } from "@/lib/menu-utils";
 import type { DenZkratka } from "@/lib/types";
@@ -59,19 +60,21 @@ export default async function MenuPage({
           <p className="font-mono text-sm opacity-70">{t("noMenuText")}</p>
         </div>
       ) : (
-        <MenuTable
-          menu={menu}
-          todayISO={dnesniDatum()}
-          labels={{
-            soup: t("soup"),
-            mains: t("mains"),
-            allergens: t("allergens"),
-            price: t("price"),
-            note: t("note"),
-            onRequest: t("onRequest"),
-            days,
-          }}
-        />
+        <ScrollReveal>
+          <MenuTable
+            menu={menu}
+            todayISO={dnesniDatum()}
+            labels={{
+              soup: t("soup"),
+              mains: t("mains"),
+              allergens: t("allergens"),
+              price: t("price"),
+              note: t("note"),
+              onRequest: t("onRequest"),
+              days,
+            }}
+          />
+        </ScrollReveal>
       )}
 
       <div className="ascii-frame p-6">

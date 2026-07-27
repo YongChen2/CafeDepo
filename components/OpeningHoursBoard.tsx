@@ -1,4 +1,5 @@
 import { OTEVIRACI_DOBA, VYDEJ_OBEDU, dnesniIndex } from "@/lib/opening-hours";
+import { SplitFlap } from "@/components/SplitFlap";
 
 export function OpeningHoursBoard({
   labels,
@@ -45,12 +46,17 @@ export function OpeningHoursBoard({
               <span className="flex-1 text-left pl-4 uppercase opacity-80 hidden sm:inline">
                 {labelFor(radek.labelKey)}
               </span>
-              <span className="tabular-nums">
-                {zavreno ? labels.closed : `${radek.open}—${radek.close}`}
-              </span>
+              <SplitFlap
+                text={zavreno ? labels.closed : `${radek.open}—${radek.close}`}
+                seed={`hours-${radek.den}`}
+                className="tabular-nums"
+              />
               {jeDnes && (
                 <span className="ml-3 flex items-center gap-1.5 uppercase text-xs border border-bg px-1">
-                  <span className="w-1.5 h-1.5 bg-accent" aria-hidden="true" />
+                  <span
+                    className="w-1.5 h-1.5 bg-accent blink-square"
+                    aria-hidden="true"
+                  />
                   {labels.today}
                 </span>
               )}

@@ -6,14 +6,7 @@ import type { Den, Jidlo, TydenniMenu } from "@/lib/types";
 import { prazdnyJidlo } from "@/lib/types";
 import { MenuTable } from "@/components/MenuTable";
 import { dnesniDatum } from "@/lib/menu-utils";
-
-const DEN_LABEL: Record<string, string> = {
-  PO: "PONDĚLÍ",
-  UT: "ÚTERÝ",
-  ST: "STŘEDA",
-  CT: "ČTVRTEK",
-  PA: "PÁTEK",
-};
+import { MenuDayEditor, DEN_LABEL } from "@/components/admin/MenuDayEditor";
 
 function pondeliTydne(offsetTydnu: number): string {
   const dnes = new Date();
@@ -175,92 +168,14 @@ export function AdminEditor({ initialMenu }: { initialMenu: TydenniMenu }) {
       </section>
 
       {menu.dny.map((den, index) => (
-        <section key={den.den} className="ascii-frame p-4 flex flex-col gap-4">
-          <h2 className="font-display uppercase text-lg tracking-tight">
-            {DEN_LABEL[den.den]}{" "}
-            <span className="font-mono text-xs opacity-60 tabular-nums">
-              {den.datum}
-            </span>
-          </h2>
-
-          <div className="flex flex-col gap-2">
-            <span className="text-xs uppercase opacity-70">Polévka</span>
-            <input
-              placeholder="Název polévky"
-              value={den.polevka?.nazev ?? ""}
-              onChange={(e) => upravPolevku(index, { nazev: e.target.value })}
-              className="ascii-frame bg-bg px-3 py-3 text-base outline-none focus:border-accent"
-            />
-            <div className="grid grid-cols-2 gap-2">
-              <input
-                placeholder="Alergeny (např. 1,3,7)"
-                value={den.polevka?.alergeny ?? ""}
-                onChange={(e) => upravPolevku(index, { alergeny: e.target.value })}
-                className="ascii-frame bg-bg px-3 py-3 text-base outline-none focus:border-accent"
-              />
-              <input
-                type="number"
-                placeholder="Cena Kč"
-                value={den.polevka?.cena ?? ""}
-                onChange={(e) =>
-                  upravPolevku(index, {
-                    cena: e.target.value === "" ? null : Number(e.target.value),
-                  })
-                }
-                className="ascii-frame bg-bg px-3 py-3 text-base outline-none focus:border-accent"
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-3">
-            <span className="text-xs uppercase opacity-70">Hlavní jídla</span>
-            {den.hlavni.map((jidlo) => (
-              <div key={jidlo.id} className="ascii-frame p-3 flex flex-col gap-2">
-                <input
-                  placeholder="Název jídla"
-                  value={jidlo.nazev}
-                  onChange={(e) =>
-                    upravHlavni(index, jidlo.id, { nazev: e.target.value })
-                  }
-                  className="bg-bg px-3 py-3 text-base outline-none border-b border-fg/20 focus:border-accent"
-                />
-                <div className="grid grid-cols-2 gap-2">
-                  <input
-                    placeholder="Alergeny"
-                    value={jidlo.alergeny}
-                    onChange={(e) =>
-                      upravHlavni(index, jidlo.id, { alergeny: e.target.value })
-                    }
-                    className="bg-bg px-3 py-3 text-base outline-none border-b border-fg/20 focus:border-accent"
-                  />
-                  <input
-                    type="number"
-                    placeholder="Cena Kč"
-                    value={jidlo.cena ?? ""}
-                    onChange={(e) =>
-                      upravHlavni(index, jidlo.id, {
-                        cena: e.target.value === "" ? null : Number(e.target.value),
-                      })
-                    }
-                    className="bg-bg px-3 py-3 text-base outline-none border-b border-fg/20 focus:border-accent"
-                  />
-                </div>
-                <button
-                  onClick={() => odeberHlavni(index, jidlo.id)}
-                  className="text-accent text-xs uppercase text-left"
-                >
-                  Odebrat jídlo
-                </button>
-              </div>
-            ))}
-            <button
-              onClick={() => pridejHlavni(index)}
-              className="border border-fg uppercase text-sm py-4"
-            >
-              + Přidat hlavní jídlo
-            </button>
-          </div>
-        </section>
+        <MenuDayEditor
+          key={den.den}
+          den={den}
+          onZmenPolevku={(zmena) => upravPolevku(index, zmena)}
+          onPridejHlavni={() => pridejHlavni(index)}
+          onOdeberHlavni={(jidloId) => odeberHlavni(index, jidloId)}
+          onZmenHlavni={(jidloId, zmena) => upravHlavni(index, jidloId, zmena)}
+        />
       ))}
 
       <section className="ascii-frame p-4 flex flex-col gap-2">

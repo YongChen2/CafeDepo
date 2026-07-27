@@ -65,7 +65,7 @@ export function Footer() {
             <Link href="/obchodni-podminky" className="hover:text-accent">
               {t("terms")}
             </Link>
-            <NextLink href="/admin" className="hover:text-accent">
+            <NextLink href="/admin/demo" className="hover:text-accent">
               {t("admin")}
             </NextLink>
           </div>

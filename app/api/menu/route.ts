@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
   const cookieStore = await cookies();
   const prihlasen = await overAdminToken(cookieStore.get(ADMIN_COOKIE)?.value);
   if (!prihlasen) {
-    return NextResponse.json({ error: "Nepřihlášeno." }, { status: 401 });
+    return NextResponse.json({ error: "Nepřihlášeno." }, { status: 403 });
   }
 
   let menu: TydenniMenu;

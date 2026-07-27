@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "siteName": "CAFE DEPO",
+    "titleSuffix": "CAFE DEPO — Turnov",
+    "description": "A café in the former Turnov railway station building. Hearty breakfasts, a daily lunch menu made from fresh local ingredients, 15 kinds of coffee, homemade cakes. Nádražní 1118, Turnov."
+  },
+  "nav": {
+    "home": "Home",
+    "menu": "Menu",
+    "about": "About",
+    "contact": "Contact",
+    "languageSwitch": "Language"
+  },
+  "hours": {
+    "title": "OPENING HOURS",
+    "mon_fri": "MON—FRI",
+    "sat": "SAT",
+    "sun": "SUN",
+    "closed": "CLOSED",
+    "lunchNote": "Lunch menu served 11:00–14:45",
+    "today": "TODAY"
+  },
+  "home": {
+    "heroKicker": "TURNOV RAILWAY STATION",
+    "heroTitle": "DEPO",
+    "heroSubtitle": "A café in the former station building. Breakfast, lunch, coffee and cake — on the day's timetable.",
+    "heroCtaMenu": "Today's menu",
+    "heroCtaContact": "Contact & map",
+    "boardTitle": "DEPARTURE BOARD",
+    "boardSubtitle": "Opening hours",
+    "todayMenuTitle": "TODAY'S MENU",
+    "todayMenuCta": "Full weekly menu →",
+    "sectionsTitle": "WHAT YOU'LL FIND HERE",
+    "breakfastTitle": "BREAKFAST",
+    "breakfastText": "Hearty breakfasts to start the journey, served throughout opening hours.",
+    "coffeeTitle": "COFFEE",
+    "coffeeText": "15 kinds of coffee, to stay or to go. Plus draft beer from the Monopol brewery and homemade lemonades.",
+    "cakeTitle": "CAKES",
+    "cakeText": "Homemade cakes and pastries, fresh every day.",
+    "galleryTitle": "INTERIOR",
+    "loungeTitle": "UPSTAIRS LOUNGE",
+    "loungeText": "A private room upstairs for celebrations, birthdays, business meetings and press conferences.",
+    "loungeCta": "Enquire about the lounge",
+    "mapTitle": "FIND US",
+    "terraceNote": "Outdoor terrace."
+  },
+  "menuPage": {
+    "title": "LUNCH MENU",
+    "kicker": "VALID",
+    "lunchServing": "Lunch menu served: 11:00–14:45",
+    "soup": "SOUP",
+    "mains": "MAIN COURSES",
+    "allergens": "Allergens",
+    "price": "Price",
+    "noMenu": "NEXT WEEK'S MENU IS BEING PREPARED",
+    "noMenuText": "The current week has just ended. A new menu will be on the board soon.",
+    "permanentTitle": "PERMANENT OFFER",
+    "permanentText": "15 kinds of coffee · homemade cakes and pastries · homemade lemonades · Monopol draft beer · hearty breakfasts throughout opening hours",
+    "updated": "Updated",
+    "note": "Note",
+    "onRequest": "available on request from staff"
+  },
+  "days": {
+    "PO": "MONDAY",
+    "UT": "TUESDAY",
+    "ST": "WEDNESDAY",
+    "CT": "THURSDAY",
+    "PA": "FRIDAY"
+  },
+  "daysShort": {
+    "PO": "MON",
+    "UT": "TUE",
+    "ST": "WED",
+    "CT": "THU",
+    "PA": "FRI"
+  },
+  "about": {
+    "title": "ABOUT US",
+    "kicker": "THE STORY OF DEPO",
+    "lead": "A café in the former Turnov railway station building, run by sisters Pavla Linková and Eliška Konejlová.",
+    "body1": "Hearty breakfasts, a daily lunch menu made from fresh local ingredients, and fifteen kinds of coffee — DEPO works both as a stop along the way and as a destination in itself. Homemade cakes, pastries and lemonades are available, on the terrace or to go.",
+    "body2": "Besides the ground-floor café, we offer an upstairs lounge — for celebrations, birthdays, business meetings and press conferences.",
+    "ownersTitle": "RUN BY",
+    "ownersText": "Sisters Pavla Linková and Eliška Konejlová."
+  },
+  "contact": {
+    "title": "CONTACT",
+    "addressTitle": "ADDRESS",
+    "phoneTitle": "PHONE",
+    "emailTitle": "EMAIL",
+    "socialTitle": "SOCIAL MEDIA",
+    "hoursTitle": "OPENING HOURS",
+    "mapTitle": "MAP"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookies",
+    "terms": "Terms & Conditions",
+    "admin": "Admin"
+  },
+  "cookie": {
+    "text": "This website uses cookies for basic functionality and traffic analytics (Vercel Analytics).",
+    "accept": "Accept all",
+    "reject": "Necessary only",
+    "more": "More information"
+  },
+  "legal": {
+    "placeholderIco": "[FILL IN: Company ID]",
+    "placeholderSeat": "[FILL IN: Registered office]"
+  }
+}

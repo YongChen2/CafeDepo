@@ -1,26 +1,60 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  SWISS INDUSTRIAL PRINT — světlý brutalismus.
+  Web se čte jako tištěný nádražní jízdní řád: ostré hrany, hairline linky,
+  monospace mikro-data, žádné border-radius, žádné gradienty, žádné soft shadows.
+*/
+@theme {
+  --color-bg: #f4f4f0;
+  --color-bg-alt: #eae8e3;
+  --color-fg: #050505;
+  --color-accent: #e61919;
+  --color-line: #050505;
+
+  --font-display: var(--font-display), "Arial Black", sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
+
+  --radius-none: 0px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--color-bg);
+  color: var(--color-fg);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-mono);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* Hairline grid: kontejner má barvu linky jako pozadí, děti mají barvu
+   plochy a mezera 1px mezi nimi vykreslí tenké dělicí čáry (klasický
+   "gap:1px" trik pro odjezdovou tabuli / grid bez CSS borderů). */
+.hairline-grid {
+  background: var(--color-line);
+  display: grid;
+  gap: 1px;
+}
+.hairline-grid > * {
+  background: var(--color-bg);
+}
+
+.ascii-frame {
+  border: 1px solid var(--color-fg);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
 }

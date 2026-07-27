@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "siteName": "CAFE DEPO",
+    "titleSuffix": "CAFE DEPO — Turnov",
+    "description": "Kavárna v budově bývalého turnovského nádraží. Vydatné snídaně, polední menu z čerstvých lokálních surovin, 15 druhů kávy, domácí dorty a zákusky. Nádražní 1118, Turnov."
+  },
+  "nav": {
+    "home": "Domů",
+    "menu": "Menu",
+    "about": "O nás",
+    "contact": "Kontakt",
+    "languageSwitch": "Jazyk"
+  },
+  "hours": {
+    "title": "OTEVÍRACÍ DOBA",
+    "mon_fri": "PO—PÁ",
+    "sat": "SO",
+    "sun": "NE",
+    "closed": "ZAVŘENO",
+    "lunchNote": "Výdej poledního menu 11:00–14:45",
+    "today": "DNES"
+  },
+  "home": {
+    "heroKicker": "NÁDRAŽÍ TURNOV",
+    "heroTitle": "DEPO",
+    "heroSubtitle": "Kavárna v budově bývalého nádraží. Snídaně, oběd, káva a dort — podle jízdního řádu dne.",
+    "heroCtaMenu": "Dnešní menu",
+    "heroCtaContact": "Kontakt a mapa",
+    "boardTitle": "ODJEZDOVÁ TABULE",
+    "boardSubtitle": "Otevírací doba",
+    "todayMenuTitle": "DNEŠNÍ MENU",
+    "todayMenuCta": "Celé týdenní menu →",
+    "sectionsTitle": "CO TU NAJDETE",
+    "breakfastTitle": "SNÍDANĚ",
+    "breakfastText": "Vydatné snídaně na začátek cesty, podávané po celou provozní dobu.",
+    "coffeeTitle": "KÁVA",
+    "coffeeText": "15 druhů kávy, na místě i s sebou. K tomu točené pivo z pivovaru Monopol a domácí limonády.",
+    "cakeTitle": "DORTY",
+    "cakeText": "Domácí dorty a zákusky, každý den čerstvé.",
+    "galleryTitle": "INTERIÉR",
+    "loungeTitle": "SALONEK V PATŘE",
+    "loungeText": "Soukromý prostor v patře pro oslavy, narozeniny, firemní meetingy i tiskové konference.",
+    "loungeCta": "Poptat salonek",
+    "mapTitle": "KDE NÁS NAJDETE",
+    "terraceNote": "Venkovní terasa."
+  },
+  "menuPage": {
+    "title": "OBĚDOVÉ MENU",
+    "kicker": "PLATNOST",
+    "lunchServing": "Výdej poledního menu: 11:00–14:45",
+    "soup": "POLÉVKA",
+    "mains": "HLAVNÍ JÍDLA",
+    "allergens": "Alergeny",
+    "price": "Cena",
+    "noMenu": "MENU NA PŘÍŠTÍ TÝDEN PŘIPRAVUJEME",
+    "noMenuText": "Aktuální týden právě skončil. Nové menu bude brzy na tabuli.",
+    "permanentTitle": "STÁLÁ NABÍDKA",
+    "permanentText": "15 druhů kávy · domácí dorty a zákusky · domácí limonády · točené pivo Monopol · vydatné snídaně po celou provozní dobu",
+    "updated": "Aktualizováno",
+    "note": "Poznámka",
+    "onRequest": "na vyžádání u obsluhy"
+  },
+  "days": {
+    "PO": "PONDĚLÍ",
+    "UT": "ÚTERÝ",
+    "ST": "STŘEDA",
+    "CT": "ČTVRTEK",
+    "PA": "PÁTEK"
+  },
+  "daysShort": {
+    "PO": "PO",
+    "UT": "ÚT",
+    "ST": "ST",
+    "CT": "ČT",
+    "PA": "PÁ"
+  },
+  "about": {
+    "title": "O NÁS",
+    "kicker": "PŘÍBĚH DEPA",
+    "lead": "Kavárna v budově bývalého turnovského nádraží, kterou vedou sestry Pavla Linková a Eliška Konejlová.",
+    "body1": "Vydatné snídaně, polední menu z čerstvých lokálních surovin a patnáct druhů kávy — DEPO funguje jako zastávka na cestě i jako cíl sám o sobě. K dispozici jsou domácí dorty, zákusky a limonády, na terase i s sebou.",
+    "body2": "Kromě kavárny v přízemí nabízíme salonek v patře — pro oslavy, narozeniny, firemní meetingy i tiskové konference.",
+    "ownersTitle": "PROVOZUJÍ",
+    "ownersText": "Sestry Pavla Linková a Eliška Konejlová."
+  },
+  "contact": {
+    "title": "KONTAKT",
+    "addressTitle": "ADRESA",
+    "phoneTitle": "TELEFON",
+    "emailTitle": "E-MAIL",
+    "socialTitle": "SOCIÁLNÍ SÍTĚ",
+    "hoursTitle": "OTEVÍRACÍ DOBA",
+    "mapTitle": "MAPA"
+  },
+  "footer": {
+    "rights": "Všechna práva vyhrazena.",
+    "privacy": "Ochrana osobních údajů",
+    "cookies": "Cookies",
+    "terms": "Obchodní podmínky",
+    "admin": "Administrace"
+  },
+  "cookie": {
+    "text": "Tento web používá cookies pro základní fungování a analytiku návštěvnosti (Vercel Analytics).",
+    "accept": "Přijmout vše",
+    "reject": "Pouze nutné",
+    "more": "Více informací"
+  },
+  "legal": {
+    "placeholderIco": "[DOPLNIT: IČO]",
+    "placeholderSeat": "[DOPLNIT: sídlo]"
+  }
+}

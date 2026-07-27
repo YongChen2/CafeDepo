@@ -1,0 +1,53 @@
+{
+  "platnostOd": "2026-07-27",
+  "platnostDo": "2026-07-31",
+  "poznamka": "Gramáž a alergeny na vyžádání u obsluhy.",
+  "aktualizovano": "2026-07-24T12:00:00.000Z",
+  "dny": [
+    {
+      "den": "PO",
+      "datum": "2026-07-27",
+      "polevka": { "id": "po-s", "nazev": "Slepičí vývar s nudlemi", "alergeny": "1,3,9", "cena": 39 },
+      "hlavni": [
+        { "id": "po-1", "nazev": "Svíčková na smetaně, houskový knedlík", "alergeny": "1,3,7,9", "cena": 169 },
+        { "id": "po-2", "nazev": "Zapékané těstoviny se zeleninou a sýrem", "alergeny": "1,7", "cena": 149 }
+      ]
+    },
+    {
+      "den": "UT",
+      "datum": "2026-07-28",
+      "polevka": { "id": "ut-s", "nazev": "Zeleninová polévka s kroupami", "alergeny": "9", "cena": 39 },
+      "hlavni": [
+        { "id": "ut-1", "nazev": "Kuřecí řízek, bramborová kaše", "alergeny": "1,3,7", "cena": 159 },
+        { "id": "ut-2", "nazev": "Špagety all'arrabbiata", "alergeny": "1", "cena": 139 }
+      ]
+    },
+    {
+      "den": "ST",
+      "datum": "2026-07-29",
+      "polevka": { "id": "st-s", "nazev": "Čočková polévka s uzeninou", "alergeny": "1,9", "cena": 39 },
+      "hlavni": [
+        { "id": "st-1", "nazev": "Vepřová pečeně, dušené zelí, houskový knedlík", "alergeny": "1,3", "cena": 159 },
+        { "id": "st-2", "nazev": "Grilované halloumi, quinoa salát", "alergeny": "7", "cena": 155 }
+      ]
+    },
+    {
+      "den": "CT",
+      "datum": "2026-07-30",
+      "polevka": { "id": "ct-s", "nazev": "Bramboračka", "alergeny": "9", "cena": 39 },
+      "hlavni": [
+        { "id": "ct-1", "nazev": "Kuřecí stroganoff, dušená rýže", "alergeny": "7,9", "cena": 159 },
+        { "id": "ct-2", "nazev": "Smažený sýr, brambor, tatarská omáčka", "alergeny": "1,3,7,10", "cena": 149 }
+      ]
+    },
+    {
+      "den": "PA",
+      "datum": "2026-07-31",
+      "polevka": { "id": "pa-s", "nazev": "Rajčatová polévka s bazalkou", "alergeny": "9", "cena": 39 },
+      "hlavni": [
+        { "id": "pa-1", "nazev": "Pečený losos, bramborové pyré, špenát", "alergeny": "4,7", "cena": 195 },
+        { "id": "pa-2", "nazev": "Řízek z květáku, bramborový salát", "alergeny": "1,3,7", "cena": 145 }
+      ]
+    }
+  ]
+}

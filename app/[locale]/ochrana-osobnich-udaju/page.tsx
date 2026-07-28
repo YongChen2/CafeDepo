@@ -112,18 +112,18 @@ export default async function PrivacyPage({
       />
 
       <div>
-        <h1 className="font-display uppercase tracking-tight text-3xl sm:text-5xl">
+        <h1 className="font-display uppercase tracking-[-0.03em] text-3xl sm:text-5xl">
           {content.h1}
         </h1>
-        <p className="font-mono text-xs opacity-60 mt-2">{content.updated}</p>
+        <p className="font-mono text-xs text-muted mt-2">{content.updated}</p>
       </div>
-      <div className="flex flex-col gap-6 font-mono text-sm">
+      <div className="flex flex-col gap-6 text-sm leading-[1.6]">
         {content.sections.map((s) => (
           <div key={s.h}>
-            <h2 className="font-display uppercase text-base tracking-tight mb-1">
+            <h2 className="font-display uppercase text-base mb-1">
               {s.h}
             </h2>
-            <p className="opacity-80">{s.p}</p>
+            <p>{s.p}</p>
           </div>
         ))}
       </div>

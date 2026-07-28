@@ -2,10 +2,12 @@ import { SITE } from "./site";
 
 const MENICKA_URL = "https://www.menicka.cz/8771-cafe-depo.html";
 
-// TODO: ověřit u klienta
+// Otevírací doba ověřená klientkou (2026-07-28), viz lib/opening-hours.ts.
 const OPENING_HOURS_SPEC = [
-  { dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:00", closes: "18:00" },
-  { dayOfWeek: ["Saturday"], opens: "09:00", closes: "14:00" },
+  { dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"], opens: "08:00", closes: "18:00" },
+  { dayOfWeek: ["Friday"], opens: "08:00", closes: "22:00" },
+  { dayOfWeek: ["Saturday"], opens: "09:00", closes: "22:00" },
+  { dayOfWeek: ["Sunday"], opens: "09:00", closes: "14:00" },
 ];
 
 export function cafeJsonLd() {

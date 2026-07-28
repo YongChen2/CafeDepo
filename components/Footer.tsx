@@ -11,16 +11,16 @@ export function Footer() {
       <div className="max-w-5xl mx-auto px-4 py-8 flex flex-col gap-6 font-mono text-xs">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <div>
-            <div className="font-display uppercase text-sm mb-2">CAFE DEPO</div>
-            <div className="opacity-70">Nádražní 1118</div>
-            <div className="opacity-70">511 01 Turnov</div>
+            <div className="font-semibold uppercase text-sm mb-2">CAFE DEPO</div>
+            <div className="text-muted">Nádražní 1118</div>
+            <div className="text-muted">511 01 Turnov</div>
           </div>
           <div>
-            <div className="uppercase opacity-60 mb-2">{c("phoneTitle")}</div>
+            <div className="uppercase text-muted mb-2">{c("phoneTitle")}</div>
             <a href="tel:+420776620290" className="link-underline hover:text-accent">
               776 620 290
             </a>
-            <div className="uppercase opacity-60 mt-3 mb-2">
+            <div className="uppercase text-muted mt-3 mb-2">
               {c("emailTitle")}
             </div>
             <a href="mailto:info@depocafe.cz" className="link-underline hover:text-accent">
@@ -28,7 +28,7 @@ export function Footer() {
             </a>
           </div>
           <div>
-            <div className="uppercase opacity-60 mb-2">{c("socialTitle")}</div>
+            <div className="uppercase text-muted mb-2">{c("socialTitle")}</div>
             <div className="flex flex-col gap-1">
               <a
                 href="https://www.facebook.com/depocafe.cz"
@@ -50,7 +50,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-fg/20 pt-4 opacity-70">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-fg/20 pt-4 text-muted">
           <span>
             © {year} CAFE DEPO — {t("rights")}
           </span>

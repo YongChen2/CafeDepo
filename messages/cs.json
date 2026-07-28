@@ -18,10 +18,6 @@
   },
   "hours": {
     "title": "OTEVÍRACÍ DOBA",
-    "mon_fri": "PO—PÁ",
-    "sat": "SO",
-    "sun": "NE",
-    "closed": "ZAVŘENO",
     "lunchNote": "Výdej poledního menu 11:00–14:45",
     "today": "DNES"
   },

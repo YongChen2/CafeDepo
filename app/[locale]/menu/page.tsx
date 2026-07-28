@@ -53,10 +53,10 @@ export default async function MenuPage({
       />
 
       <div>
-        <h1 className="font-display uppercase tracking-tight text-4xl sm:text-6xl">
+        <h1 className="font-display uppercase tracking-[-0.03em] text-4xl sm:text-6xl">
           {t("title")}
         </h1>
-        <p className="font-mono text-sm uppercase tracking-widest opacity-70 mt-2">
+        <p className="font-mono text-sm uppercase tracking-widest text-muted mt-2">
           {t("servingLabel")} {VYDEJ_OBEDU.open}—{VYDEJ_OBEDU.close}
         </p>
       </div>
@@ -73,17 +73,17 @@ export default async function MenuPage({
       </ScrollReveal>
 
       <div>
-        <h2 className="font-display uppercase text-xl tracking-tight mb-4">
+        <h2 className="font-display uppercase text-xl mb-4">
           {t("permanentTitle")}
         </h2>
         <div className="ascii-frame">
           <div className="hairline-grid grid-cols-1 sm:grid-cols-2">
             {categories.map((c) => (
-              <div key={c.title} className="bg-bg p-4 font-mono">
-                <div className="font-display uppercase text-base tracking-tight">
+              <div key={c.title} className="bg-bg p-4">
+                <div className="font-semibold uppercase text-base">
                   {c.title}
                 </div>
-                <div className="text-sm opacity-70 mt-1">{c.text}</div>
+                <div className="font-mono text-sm text-muted mt-1">{c.text}</div>
               </div>
             ))}
           </div>
@@ -91,16 +91,12 @@ export default async function MenuPage({
       </div>
 
       <div>
-        <h2 className="font-display uppercase text-xl tracking-tight mb-4">
+        <h2 className="font-display uppercase text-xl mb-4">
           {t("hoursTitle")}
         </h2>
         <OpeningHoursBoard
           labels={{
             title: hoursT("title"),
-            mon_fri: hoursT("mon_fri"),
-            sat: hoursT("sat"),
-            sun: hoursT("sun"),
-            closed: hoursT("closed"),
             lunchNote: hoursT("lunchNote"),
             today: hoursT("today"),
           }}

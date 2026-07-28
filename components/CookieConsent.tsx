@@ -46,13 +46,13 @@ export function CookieConsent() {
         <div className="flex gap-2 shrink-0">
           <button
             onClick={() => rozhodni("rejected")}
-            className="border border-fg px-4 py-3 uppercase"
+            className="btn-outline bg-bg text-fg border border-fg px-4 py-3 rounded-[2px] uppercase"
           >
             {t("reject")}
           </button>
           <button
             onClick={() => rozhodni("accepted")}
-            className="bg-fg text-bg px-4 py-3 uppercase"
+            className="btn-invert bg-fg text-bg px-4 py-3 rounded-[2px] uppercase"
           >
             {t("accept")}
           </button>

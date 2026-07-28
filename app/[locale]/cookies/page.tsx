@@ -89,12 +89,12 @@ export default async function CookiesPage({
         )}
       />
 
-      <h1 className="font-display uppercase tracking-tight text-3xl sm:text-5xl">
+      <h1 className="font-display uppercase tracking-[-0.03em] text-3xl sm:text-5xl">
         {content.h1}
       </h1>
-      <p className="font-mono text-sm opacity-80">{content.intro}</p>
+      <p className="text-sm leading-[1.6]">{content.intro}</p>
 
-      <div className="ascii-frame">
+      <div className="card-frame">
         <div className="hairline-grid grid-cols-1">
           <div className="grid grid-cols-3 bg-fg text-bg font-mono text-xs uppercase p-3 gap-2">
             <span>Name</span>
@@ -107,14 +107,14 @@ export default async function CookiesPage({
               className="grid grid-cols-3 bg-bg font-mono text-xs p-3 gap-2"
             >
               <span className="font-mono">{r.name}</span>
-              <span className="opacity-80">{r.ucel}</span>
-              <span className="opacity-60">{r.doba}</span>
+              <span className="text-muted">{r.ucel}</span>
+              <span className="text-muted">{r.doba}</span>
             </div>
           ))}
         </div>
       </div>
 
-      <p className="font-mono text-sm opacity-70">{content.outro}</p>
+      <p className="text-sm leading-[1.6] text-muted">{content.outro}</p>
     </main>
   );
 }

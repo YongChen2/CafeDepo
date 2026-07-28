@@ -1,5 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { BackgroundPattern } from "@/components/BackgroundPattern";
 import { OpeningHoursBoard } from "@/components/OpeningHoursBoard";
 import { SmartImage } from "@/components/SmartImage";
 import { MapEmbed } from "@/components/MapEmbed";
@@ -29,30 +30,31 @@ export default async function HomePage({
   return (
     <main className="flex flex-col">
       {/* HERO */}
-      <section className="border-b border-fg">
-        <div className="max-w-5xl mx-auto px-4 pt-16 pb-12 flex flex-col gap-6">
-          <p className="font-mono text-xs uppercase tracking-widest opacity-60">
+      <section className="relative border-b border-fg overflow-hidden">
+        <BackgroundPattern kind="rays" />
+        <div className="relative z-10 max-w-5xl mx-auto px-4 pt-16 pb-12 flex flex-col gap-6">
+          <p className="font-mono text-xs uppercase tracking-widest text-muted">
             {t("heroKicker")}
           </p>
           <h1
-            className="font-display uppercase leading-[0.85] tracking-tight"
+            className="font-display uppercase leading-[0.85] tracking-[-0.03em]"
             style={{ fontSize: "clamp(4.5rem, 18vw, 13rem)" }}
           >
             {t("heroTitle")}
           </h1>
-          <p className="font-mono text-base sm:text-lg max-w-xl opacity-80">
+          <p className="text-base sm:text-lg max-w-xl leading-[1.6]">
             {t("heroSubtitle")}
           </p>
           <div className="flex flex-wrap gap-3 pt-2">
             <Link
               href="/menu"
-              className="btn-invert bg-fg text-bg font-display uppercase px-6 py-4 tracking-tight"
+              className="btn-invert bg-fg text-bg font-semibold uppercase px-6 py-4 rounded-[2px]"
             >
               {t("heroCtaMenu")}
             </Link>
             <Link
               href="/kontakt"
-              className="border border-fg font-display uppercase px-6 py-4 tracking-tight hover:bg-fg hover:text-bg"
+              className="btn-outline bg-bg text-fg border border-fg font-semibold uppercase px-6 py-4 rounded-[2px]"
             >
               {t("heroCtaContact")}
             </Link>
@@ -63,18 +65,15 @@ export default async function HomePage({
       <Ticker text="SNÍDANĚ /// 15 DRUHŮ KÁVY /// DOMÁCÍ DORTY /// POLEDNÍ MENU 11:00–14:45 /// TERASA /// SALONEK V PATŘE ///" />
 
       {/* ODJEZDOVÁ TABULE + DNEŠNÍ MENU */}
-      <ScrollReveal className="max-w-5xl mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
+      <ScrollReveal className="max-w-5xl mx-auto px-4 py-16 grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
         <div>
-          <h2 className="font-display uppercase text-2xl tracking-tight mb-4">
+          <h2 className="font-display uppercase text-2xl mb-4">
             {t("boardTitle")}
           </h2>
           <OpeningHoursBoard
+            splitFlap
             labels={{
               title: hoursT("title"),
-              mon_fri: hoursT("mon_fri"),
-              sat: hoursT("sat"),
-              sun: hoursT("sun"),
-              closed: hoursT("closed"),
               lunchNote: hoursT("lunchNote"),
               today: hoursT("today"),
             }}
@@ -82,7 +81,7 @@ export default async function HomePage({
         </div>
 
         <div>
-          <h2 className="font-display uppercase text-2xl tracking-tight mb-4">
+          <h2 className="font-display uppercase text-2xl mb-4">
             {t("todayMenuTitle")}
           </h2>
           <MenuLinks
@@ -98,12 +97,13 @@ export default async function HomePage({
       </ScrollReveal>
 
       {/* SNÍDANĚ / KÁVA / DORTY */}
-      <ScrollReveal className="border-y border-fg bg-fg text-bg">
-        <div className="max-w-5xl mx-auto px-4 py-12">
-          <h2 className="font-display uppercase text-2xl tracking-tight mb-8">
+      <section className="relative border-y border-fg bg-bg-alt overflow-hidden">
+        <BackgroundPattern kind="halftone" />
+        <ScrollReveal className="relative z-10 max-w-5xl mx-auto px-4 py-16">
+          <h2 className="font-display uppercase text-2xl mb-8">
             {t("sectionsTitle")}
           </h2>
-          <div className="hairline-grid grid-cols-1 sm:grid-cols-3 bg-bg">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
               {
                 title: t("breakfastTitle"),
@@ -139,7 +139,7 @@ export default async function HomePage({
                     : "Domácí zákusky a dorty na kavárenském stole — makronky, tartaletky a studené nápoje",
               },
             ].map((s) => (
-              <div key={s.title} className="bg-fg text-bg flex flex-col gap-3">
+              <div key={s.title} className="card-frame bg-bg flex flex-col gap-3">
                 <SmartImage
                   src={s.src}
                   alt={s.alt}
@@ -149,23 +149,23 @@ export default async function HomePage({
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 341px"
                 />
                 <div className="p-6 pt-3 flex flex-col gap-3">
-                  <h3 className="font-display uppercase text-xl tracking-tight">
+                  <h3 className="font-semibold uppercase text-xl">
                     {s.title}
                   </h3>
-                  <p className="font-mono text-sm opacity-80">{s.text}</p>
+                  <p className="text-sm leading-[1.6]">{s.text}</p>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </ScrollReveal>
+        </ScrollReveal>
+      </section>
 
       {/* GALERIE */}
-      <ScrollReveal className="max-w-5xl mx-auto px-4 py-12 w-full">
-        <h2 className="font-display uppercase text-2xl tracking-tight mb-6">
+      <ScrollReveal className="max-w-5xl mx-auto px-4 py-16 w-full">
+        <h2 className="font-display uppercase text-2xl mb-6">
           {t("galleryTitle")}
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-1">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           <SmartImage
             src="/images/interier/sal-01.webp"
             seed="interier/sal-01"
@@ -206,7 +206,7 @@ export default async function HomePage({
 
       {/* SALONEK */}
       <ScrollReveal className="border-t border-fg">
-        <div className="max-w-5xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div className="max-w-5xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <SmartImage
             src="/images/interier/salonek-01.webp"
             seed="interier/salonek-01"
@@ -217,13 +217,13 @@ export default async function HomePage({
             sizes="(max-width: 768px) 100vw, 512px"
           />
           <div className="flex flex-col gap-4">
-            <h2 className="font-display uppercase text-2xl tracking-tight">
+            <h2 className="font-display uppercase text-2xl">
               {t("loungeTitle")}
             </h2>
-            <p className="font-mono text-sm opacity-80">{t("loungeText")}</p>
+            <p className="text-sm leading-[1.6]">{t("loungeText")}</p>
             <Link
               href="/kontakt"
-              className="btn-invert bg-fg text-bg font-display uppercase px-6 py-4 tracking-tight self-start"
+              className="btn-invert bg-fg text-bg font-semibold uppercase px-6 py-4 rounded-[2px] self-start"
             >
               {t("loungeCta")}
             </Link>
@@ -232,14 +232,15 @@ export default async function HomePage({
       </ScrollReveal>
 
       {/* MAPA / KONTAKT */}
-      <ScrollReveal className="border-t border-fg bg-bg-alt">
-        <div className="max-w-5xl mx-auto px-4 py-12">
-          <h2 className="font-display uppercase text-2xl tracking-tight mb-6">
+      <section className="relative border-t border-fg bg-bg-alt overflow-hidden">
+        <BackgroundPattern kind="halftone" />
+        <ScrollReveal className="relative z-10 max-w-5xl mx-auto px-4 py-16">
+          <h2 className="font-display uppercase text-2xl mb-6">
             {t("mapTitle")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="ascii-frame p-6 font-mono text-sm flex flex-col gap-2 bg-bg">
-              <span className="font-display uppercase text-lg">CAFE DEPO</span>
+            <div className="card-frame p-6 font-mono text-sm flex flex-col gap-2 bg-bg">
+              <span className="font-semibold uppercase text-lg">CAFE DEPO</span>
               <span>{SITE.streetAddress}</span>
               <span>
                 {SITE.postalCode} {SITE.addressLocality}
@@ -268,8 +269,8 @@ export default async function HomePage({
               }}
             />
           </div>
-        </div>
-      </ScrollReveal>
+        </ScrollReveal>
+      </section>
     </main>
   );
 }

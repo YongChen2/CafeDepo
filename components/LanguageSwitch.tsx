@@ -19,7 +19,7 @@ export function LanguageSwitch() {
       {routing.locales.map((loc, i) => (
         <span key={loc} className="flex items-center gap-1">
           {i > 0 && (
-            <span className="opacity-40" aria-hidden="true">
+            <span className="text-muted" aria-hidden="true">
               /
             </span>
           )}
@@ -30,7 +30,7 @@ export function LanguageSwitch() {
             className={
               loc === activeLocale
                 ? "text-accent"
-                : "opacity-60 hover:opacity-100"
+                : "text-muted hover:text-fg transition-colors duration-300 ease-in-out"
             }
           >
             {loc}

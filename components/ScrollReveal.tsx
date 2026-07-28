@@ -8,8 +8,9 @@ function prefersReducedMotion(): boolean {
 }
 
 /**
- * Sekce "najede" přes clip-path: inset() zleva při vstupu do viewportu.
- * Žádný pohyb po ose Y — jen odkrytí. Jednou, threshold 0.15.
+ * Přímé děti "najedou" opacity 0→1 + translateY(12px)→0 při vstupu do
+ * viewportu, se staggerem 60ms mezi nimi (viz .scroll-reveal v globals.css).
+ * Jednou, threshold 0.15.
  */
 export function ScrollReveal({
   children,
@@ -48,15 +49,15 @@ export function ScrollReveal({
 
   const cls =
     state === "pending"
-      ? "reveal-pending"
+      ? "is-pending"
       : state === "active"
-        ? "reveal-active"
-        : "reveal-settled";
+        ? "is-active"
+        : "is-settled";
 
   return (
     <div
       ref={ref}
-      className={`${cls} ${className}`}
+      className={`scroll-reveal ${cls} ${className}`}
       onTransitionEnd={() => {
         if (state === "active") setState("settled");
       }}

@@ -1,14 +1,12 @@
-// TODO: ověřit u klienta
-// Otevírací doba dle zadání klientky (2026-07-27): PO–PÁ 08:00–18:00,
-// SO 09:00–14:00, NE zavřeno. Výdej poledního menu 11:00–14:45.
+// Otevírací doba ověřená klientkou (2026-07-28).
 export const OTEVIRACI_DOBA = [
-  { den: "PO", labelKey: "mon_fri" as const, open: "08:00", close: "18:00" },
-  { den: "UT", labelKey: "mon_fri" as const, open: "08:00", close: "18:00" },
-  { den: "ST", labelKey: "mon_fri" as const, open: "08:00", close: "18:00" },
-  { den: "CT", labelKey: "mon_fri" as const, open: "08:00", close: "18:00" },
-  { den: "PA", labelKey: "mon_fri" as const, open: "08:00", close: "18:00" },
-  { den: "SO", labelKey: "sat" as const, open: "09:00", close: "14:00" },
-  { den: "NE", labelKey: "sun" as const, open: null, close: null },
+  { den: "PO", open: "08:00", close: "18:00" },
+  { den: "UT", open: "08:00", close: "18:00" },
+  { den: "ST", open: "08:00", close: "18:00" },
+  { den: "CT", open: "08:00", close: "18:00" },
+  { den: "PA", open: "08:00", close: "22:00" },
+  { den: "SO", open: "09:00", close: "22:00" },
+  { den: "NE", open: "09:00", close: "14:00" },
 ] as const;
 
 export const VYDEJ_OBEDU = { open: "11:00", close: "14:45" };

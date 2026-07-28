@@ -3,33 +3,28 @@ import { SplitFlap } from "@/components/SplitFlap";
 
 export function OpeningHoursBoard({
   labels,
+  splitFlap = false,
 }: {
   labels: {
     title: string;
-    mon_fri: string;
-    sat: string;
-    sun: string;
-    closed: string;
     lunchNote: string;
     today: string;
   };
+  splitFlap?: boolean;
 }) {
   const dnes = dnesniIndex();
-  const labelFor = (key: "mon_fri" | "sat" | "sun") => labels[key];
 
   return (
     <div className="ascii-frame">
       <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 p-3 border-b border-fg bg-fg text-bg">
-        <span className="font-display uppercase text-sm tracking-tight">
-          {labels.title}
-        </span>
+        <span className="font-semibold uppercase text-sm">{labels.title}</span>
         <span className="font-mono text-xs tabular-nums">001—007</span>
       </div>
 
       <div className="hairline-grid grid-cols-1">
         {OTEVIRACI_DOBA.map((radek, i) => {
           const jeDnes = i === dnes;
-          const zavreno = radek.open === null;
+          const cas = `${radek.open}—${radek.close}`;
           return (
             <div
               key={radek.den}
@@ -40,21 +35,22 @@ export function OpeningHoursBoard({
                   : "bg-bg text-fg")
               }
             >
-              <span className="w-24 shrink-0 font-display text-base">
+              <span className="w-24 shrink-0 font-mono uppercase">
                 {radek.den}
               </span>
-              <span className="flex-1 text-left pl-4 uppercase opacity-80 hidden sm:inline">
-                {labelFor(radek.labelKey)}
-              </span>
-              <SplitFlap
-                text={zavreno ? labels.closed : `${radek.open}—${radek.close}`}
-                seed={`hours-${radek.den}`}
-                className="tabular-nums"
-              />
+              {splitFlap ? (
+                <SplitFlap
+                  text={cas}
+                  seed={`hours-${radek.den}`}
+                  className="tabular-nums"
+                />
+              ) : (
+                <span className="tabular-nums">{cas}</span>
+              )}
               {jeDnes && (
                 <span className="ml-3 flex items-center gap-1.5 uppercase text-xs border border-bg px-1">
                   <span
-                    className="w-1.5 h-1.5 bg-accent blink-square"
+                    className="w-1.5 h-1.5 rounded-full bg-accent"
                     aria-hidden="true"
                   />
                   {labels.today}
@@ -65,7 +61,7 @@ export function OpeningHoursBoard({
         })}
       </div>
 
-      <div className="p-3 font-mono text-xs border-t border-fg bg-bg opacity-70">
+      <div className="p-3 font-mono text-xs border-t border-fg bg-bg text-muted">
         {labels.lunchNote} ({VYDEJ_OBEDU.open}—{VYDEJ_OBEDU.close})
       </div>
     </div>

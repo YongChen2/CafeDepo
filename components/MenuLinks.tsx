@@ -22,7 +22,7 @@ export function MenuLinks({
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`${labels.facebookTitle} — ${labels.newWindow}`}
-        className={`btn-invert-accent flex items-center justify-between gap-3 bg-fg text-bg font-display uppercase tracking-tight border-b border-bg/20 ${
+        className={`btn-invert-accent flex items-center justify-between gap-3 bg-fg text-bg font-semibold uppercase border-b border-bg/20 ${
           compact ? "px-4 py-4 text-lg sm:text-xl" : "px-6 py-6 text-2xl sm:text-3xl"
         }`}
       >
@@ -36,7 +36,7 @@ export function MenuLinks({
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`${labels.menickaTitle} — ${labels.newWindow}`}
-        className={`link-underline flex items-center justify-between gap-3 font-display uppercase tracking-tight hover:bg-fg hover:text-bg ${
+        className={`btn-outline bg-bg text-fg flex items-center justify-between gap-3 font-semibold uppercase ${
           compact ? "px-4 py-3 text-sm" : "px-6 py-4 text-base sm:text-lg"
         }`}
       >
@@ -46,7 +46,7 @@ export function MenuLinks({
         </span>
       </a>
       <p
-        className={`font-mono opacity-70 border-t border-fg/20 ${
+        className={`font-mono text-muted border-t border-fg/20 ${
           compact ? "text-[11px] px-4 py-2" : "text-xs px-6 py-3"
         }`}
       >

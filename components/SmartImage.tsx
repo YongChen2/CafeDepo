@@ -51,7 +51,7 @@ export function SmartImage({
   }
 
   return (
-    <div className={`relative ${aspect} photo-industrial cursor-crosshair`}>
+    <div className={`relative ${aspect} photo-industrial`}>
       <Image
         src={src}
         alt={alt}

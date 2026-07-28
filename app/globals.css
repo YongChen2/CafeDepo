@@ -1,26 +1,23 @@
 @import "tailwindcss";
 
 /*
-  SWISS INDUSTRIAL PRINT — světlý brutalismus.
-  Web se čte jako tištěný nádražní jízdní řád: ostré hrany, hairline linky,
-  monospace mikro-data, žádné border-radius, žádné gradienty, žádné soft shadows.
+  SIMPLE MODERN — odjezdová tabule zůstává jako koncept a kostra
+  (hairline grid, tabule s otevírací dobou a denním menu), ale typografie,
+  barvy a pohyb jsou měkčí: Inter na běžný text, tlumená terakota místo
+  syté červené, jemné 300ms přechody místo okamžitých inverzí a steps().
 */
 @theme {
-  --color-bg: #f4f4f0;
-  --color-bg-alt: #eae8e3;
-  --color-fg: #050505;
-  --color-accent: #c81414;
-  --color-line: #050505;
+  --color-bg: #faf8f4;
+  --color-bg-alt: #f1ece3;
+  --color-fg: #1a1a1a;
+  --color-accent: #c4542a;
+  --color-muted: #6b6560;
+  --color-frame: #e2ddd5;
+  --color-line: var(--color-fg);
 
   --font-display: var(--font-display), "Arial Black", sans-serif;
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono), ui-monospace, monospace;
-
-  --radius-none: 0px;
-}
-
-* {
-  border-radius: 0 !important;
-  box-shadow: none !important;
 }
 
 html {
@@ -31,7 +28,6 @@ html {
 body {
   background: var(--color-bg);
   color: var(--color-fg);
-  font-family: var(--font-mono);
 }
 
 ::selection {
@@ -41,7 +37,8 @@ body {
 
 /* Hairline grid: kontejner má barvu linky jako pozadí, děti mají barvu
    plochy a mezera 1px mezi nimi vykreslí tenké dělicí čáry (klasický
-   "gap:1px" trik pro odjezdovou tabuli / grid bez CSS borderů). */
+   "gap:1px" trik pro odjezdovou tabuli / grid bez CSS borderů).
+   Zůstává tmavý — je to strukturální prvek tabule, ne karta. */
 .hairline-grid {
   background: var(--color-line);
   display: grid;
@@ -51,20 +48,29 @@ body {
   background: var(--color-bg);
 }
 
+/* Rámeček odjezdové tabule / informační cedule — koncept zůstává ostrý
+   a tmavý, beze změny. */
 .ascii-frame {
   border: 1px solid var(--color-fg);
+}
+
+/* Obecná karta (kontakt, cookies tabulka, salonek...) — jemný světlý
+   rámeček a zaoblení, žádná černá inverze. */
+.card-frame {
+  border: 1px solid var(--color-frame);
+  border-radius: 2px;
+  overflow: hidden;
 }
 
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }
 
-/* Fotky drženy ve stylu Swiss Industrial Print: bez zaoblení (viz reset
-   výše), 1px černý rámeček, mírně potlačená sytost barev ať ladí s
-   paletou #F4F4F0/#050505/#E61919 místo syrové barevné fotografie. */
+/* Rámeček fotky / placeholderu — jemný, zaoblený, bez crosshair kurzoru. */
 .photo-industrial {
-  border: 1px solid var(--color-fg);
-  filter: grayscale(15%) saturate(0.85) contrast(1.05);
+  border: 1px solid var(--color-frame);
+  border-radius: 2px;
+  overflow: hidden;
 }
 
 /* Viditelný focus ring na všech interaktivních prvcích, klávesnice i myš. */
@@ -74,10 +80,8 @@ body {
 }
 
 /* ==========================================================================
-   ANIMAČNÍ VRSTVA — mechanická, ne měkká.
-   Zakázáno: fade, blur, scale-bounce, spring, parallax, ease-in-out.
-   Povoleno: steps(), clip-path reveal, translate po celých pixelech,
-   okamžité přepnutí stavu. Vše respektuje prefers-reduced-motion.
+   ANIMAČNÍ VRSTVA — jemná, 300ms cubic-bezier, žádné steps() ani instant
+   inverze. Vše respektuje prefers-reduced-motion.
    ========================================================================== */
 
 /* Jemná statická textura šumu přes celý web — čistě dekorativní, bez pohybu. */
@@ -93,7 +97,9 @@ body::before {
 }
 
 /* SPLIT-FLAP: jeden "flap-frame" span se remountuje při každém snímku
-   (React key), takže se pokaždé znovu spustí tato steps() animace. */
+   (React key), takže se pokaždé znovu spustí tato steps() animace.
+   Ponecháno jen na otevírací době na homepage — jediné místo, kde se
+   SplitFlap ještě používá. */
 @keyframes flap-tick {
   0% {
     transform: scaleY(0.35);
@@ -113,23 +119,37 @@ body::before {
   animation: flap-tick 90ms steps(2) 1;
 }
 
-/* SCROLL REVEAL: clip-path inset zleva, žádný pohyb po ose Y. */
-.reveal-pending {
-  clip-path: inset(0 100% 0 0);
-  will-change: clip-path;
+/* SCROLL REVEAL: opacity + translateY na přímých dětech, se staggerem
+   60ms mezi nimi. Funguje jak pro jednu obalenou komponentu (delay 0),
+   tak pro grid karet/galerii (postupný nájezd). */
+.scroll-reveal.is-pending > * {
+  opacity: 0;
+  transform: translateY(12px);
 }
-.reveal-active {
-  clip-path: inset(0 0 0 0);
-  transition: clip-path 200ms steps(4);
-  will-change: clip-path;
+.scroll-reveal.is-active > *,
+.scroll-reveal.is-settled > * {
+  opacity: 1;
+  transform: translateY(0);
 }
-.reveal-settled {
-  clip-path: inset(0 0 0 0);
+.scroll-reveal.is-active > * {
+  transition:
+    opacity 300ms var(--ease-in-out),
+    transform 300ms var(--ease-in-out);
 }
+.scroll-reveal.is-active > *:nth-child(1) { transition-delay: 0ms; }
+.scroll-reveal.is-active > *:nth-child(2) { transition-delay: 60ms; }
+.scroll-reveal.is-active > *:nth-child(3) { transition-delay: 120ms; }
+.scroll-reveal.is-active > *:nth-child(4) { transition-delay: 180ms; }
+.scroll-reveal.is-active > *:nth-child(5) { transition-delay: 240ms; }
+.scroll-reveal.is-active > *:nth-child(6) { transition-delay: 300ms; }
+.scroll-reveal.is-active > *:nth-child(7) { transition-delay: 360ms; }
+.scroll-reveal.is-active > *:nth-child(8) { transition-delay: 420ms; }
 
-/* MIKROINTERAKCE */
+/* MIKROINTERAKCE — jemné, animované, ne okamžité. */
 .btn-invert {
-  transition: none;
+  transition:
+    background-color 300ms var(--ease-in-out),
+    color 300ms var(--ease-in-out);
 }
 .btn-invert:hover,
 .btn-invert:focus-visible {
@@ -137,12 +157,24 @@ body::before {
   color: var(--color-fg);
 }
 .btn-invert-accent {
-  transition: none;
+  transition:
+    background-color 300ms var(--ease-in-out),
+    color 300ms var(--ease-in-out);
 }
 .btn-invert-accent:hover,
 .btn-invert-accent:focus-visible {
   background: var(--color-bg);
   color: var(--color-accent);
+}
+.btn-outline {
+  transition:
+    background-color 300ms var(--ease-in-out),
+    color 300ms var(--ease-in-out);
+}
+.btn-outline:hover,
+.btn-outline:focus-visible {
+  background: var(--color-fg);
+  color: var(--color-bg);
 }
 
 .link-underline {
@@ -157,30 +189,18 @@ body::before {
   height: 2px;
   width: 0;
   background: var(--color-accent);
-  transition: width 120ms linear;
+  transition: width 200ms var(--ease-in-out);
 }
 .link-underline:hover::after,
 .link-underline:focus-visible::after {
   width: 100%;
 }
 
-@keyframes blink-square {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-.blink-square {
-  animation: blink-square 1s steps(2, jump-none) infinite;
-}
-
-/* TICKER: nekonečný pás, lineární konstantní rychlost, obsah zdvojený. */
+/* TICKER: nekonečný pás, pomalá konstantní rychlost, obsah zdvojený. */
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: ticker-scroll 24s linear infinite;
+  animation: ticker-scroll 40s linear infinite;
   will-change: transform;
 }
 @keyframes ticker-scroll {
@@ -196,15 +216,11 @@ body::before {
   .flap-frame {
     animation: none !important;
   }
-  .reveal-pending,
-  .reveal-active {
-    clip-path: inset(0 0 0 0) !important;
-    transition: none !important;
-    will-change: auto !important;
-  }
-  .blink-square {
-    animation: none !important;
+  .scroll-reveal.is-pending > *,
+  .scroll-reveal.is-active > * {
     opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: none !important;
   }
   .ticker-track {
     animation-play-state: paused !important;

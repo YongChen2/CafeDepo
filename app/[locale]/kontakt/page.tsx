@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { BackgroundPattern } from "@/components/BackgroundPattern";
 import { OpeningHoursBoard } from "@/components/OpeningHoursBoard";
 import { MapEmbed } from "@/components/MapEmbed";
 import { ScrollReveal } from "@/components/ScrollReveal";
@@ -33,133 +34,132 @@ export default async function ContactPage({
   );
 
   return (
-    <main className="max-w-5xl mx-auto px-4 py-12 w-full flex flex-col gap-10">
-      <script
-        {...jsonLdScriptProps(
-          breadcrumbJsonLd(
-            [
-              { name: navT("home"), path: "/" },
-              { name: navT("contact"), path: "/kontakt" },
-            ],
-            locale,
-          ),
-        )}
-      />
+    <main className="relative overflow-hidden">
+      <BackgroundPattern kind="halftone" />
+      <div className="relative z-10 max-w-5xl mx-auto px-4 py-12 w-full flex flex-col gap-10">
+        <script
+          {...jsonLdScriptProps(
+            breadcrumbJsonLd(
+              [
+                { name: navT("home"), path: "/" },
+                { name: navT("contact"), path: "/kontakt" },
+              ],
+              locale,
+            ),
+          )}
+        />
 
-      <h1 className="font-display uppercase tracking-tight text-4xl sm:text-6xl">
-        {t("title")}
-      </h1>
+        <h1 className="font-display uppercase tracking-[-0.03em] text-4xl sm:text-6xl">
+          {t("title")}
+        </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="ascii-frame p-6 font-mono text-sm flex flex-col gap-5">
-          <div>
-            <div className="uppercase opacity-60 text-xs mb-1">
-              {t("addressTitle")}
-            </div>
-            <div className="text-lg font-display normal-case tracking-tight">
-              CAFE DEPO
-            </div>
-            <div>{SITE.streetAddress}</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="card-frame bg-bg p-6 font-mono text-sm flex flex-col gap-5">
             <div>
-              {SITE.postalCode} {SITE.addressLocality}
+              <div className="uppercase text-muted text-xs mb-1">
+                {t("addressTitle")}
+              </div>
+              <div className="text-lg font-semibold normal-case">
+                CAFE DEPO
+              </div>
+              <div>{SITE.streetAddress}</div>
+              <div>
+                {SITE.postalCode} {SITE.addressLocality}
+              </div>
             </div>
-          </div>
 
-          <div>
-            <div className="uppercase opacity-60 text-xs mb-1">
-              {t("phoneTitle")}
+            <div>
+              <div className="uppercase text-muted text-xs mb-1">
+                {t("phoneTitle")}
+              </div>
+              <a href={`tel:+420${SITE.phone}`} className="link-underline hover:text-accent">
+                {SITE.phoneDisplay}
+              </a>
             </div>
-            <a href={`tel:+420${SITE.phone}`} className="link-underline hover:text-accent">
-              {SITE.phoneDisplay}
+
+            <div>
+              <div className="uppercase text-muted text-xs mb-1">
+                {t("emailTitle")}
+              </div>
+              <a href={`mailto:${SITE.email}`} className="link-underline hover:text-accent">
+                {SITE.email}
+              </a>
+            </div>
+
+            <div>
+              <div className="uppercase text-muted text-xs mb-1">
+                {t("socialTitle")}
+              </div>
+              <div className="flex flex-col gap-1">
+                <a
+                  href={SITE.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Facebook — ${commonT("newWindowSuffix")}`}
+                  className="link-underline hover:text-accent"
+                >
+                  Facebook — depocafe.cz
+                </a>
+                <a
+                  href={SITE.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Instagram — ${commonT("newWindowSuffix")}`}
+                  className="link-underline hover:text-accent"
+                >
+                  Instagram — @cafedepo_
+                </a>
+              </div>
+            </div>
+
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${t("mapTitle")} — ${commonT("newWindowSuffix")}`}
+              className="btn-invert bg-fg text-bg uppercase text-xs px-4 py-3 rounded-[2px] self-start"
+            >
+              {t("mapTitle")} →
             </a>
           </div>
 
-          <div>
-            <div className="uppercase opacity-60 text-xs mb-1">
-              {t("emailTitle")}
-            </div>
+          <MapEmbed
+            className="aspect-[4/3]"
+            labels={{
+              consentNote: t("mapConsentNote"),
+              consentCta: t("mapConsentCta"),
+            }}
+          />
+        </div>
+
+        <div className="card-frame bg-bg p-6 flex flex-col gap-3">
+          <h2 className="font-display uppercase text-xl">
+            {t("loungeTitle")}
+          </h2>
+          <p className="text-sm leading-[1.6]">{t("loungeText")}</p>
+          <div className="flex flex-wrap gap-x-6 gap-y-1 font-mono text-sm pt-1">
+            <a href={`tel:+420${SITE.phone}`} className="link-underline hover:text-accent">
+              {SITE.phoneDisplay}
+            </a>
             <a href={`mailto:${SITE.email}`} className="link-underline hover:text-accent">
               {SITE.email}
             </a>
           </div>
-
-          <div>
-            <div className="uppercase opacity-60 text-xs mb-1">
-              {t("socialTitle")}
-            </div>
-            <div className="flex flex-col gap-1">
-              <a
-                href={SITE.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Facebook — ${commonT("newWindowSuffix")}`}
-                className="link-underline hover:text-accent"
-              >
-                Facebook — depocafe.cz
-              </a>
-              <a
-                href={SITE.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Instagram — ${commonT("newWindowSuffix")}`}
-                className="link-underline hover:text-accent"
-              >
-                Instagram — @cafedepo_
-              </a>
-            </div>
-          </div>
-
-          <a
-            href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${t("mapTitle")} — ${commonT("newWindowSuffix")}`}
-            className="btn-invert bg-fg text-bg uppercase text-xs px-4 py-3 self-start"
-          >
-            {t("mapTitle")} →
-          </a>
         </div>
 
-        <MapEmbed
-          className="aspect-[4/3]"
-          labels={{
-            consentNote: t("mapConsentNote"),
-            consentCta: t("mapConsentCta"),
-          }}
-        />
+        <ScrollReveal>
+          <h2 className="font-display uppercase text-2xl mb-4">
+            {t("hoursTitle")}
+          </h2>
+          <OpeningHoursBoard
+            labels={{
+              title: hoursT("title"),
+              lunchNote: hoursT("lunchNote"),
+              today: hoursT("today"),
+            }}
+          />
+        </ScrollReveal>
       </div>
-
-      <div className="ascii-frame p-6 flex flex-col gap-3">
-        <h2 className="font-display uppercase text-xl tracking-tight">
-          {t("loungeTitle")}
-        </h2>
-        <p className="font-mono text-sm opacity-80">{t("loungeText")}</p>
-        <div className="flex flex-wrap gap-x-6 gap-y-1 font-mono text-sm pt-1">
-          <a href={`tel:+420${SITE.phone}`} className="link-underline hover:text-accent">
-            {SITE.phoneDisplay}
-          </a>
-          <a href={`mailto:${SITE.email}`} className="link-underline hover:text-accent">
-            {SITE.email}
-          </a>
-        </div>
-      </div>
-
-      <ScrollReveal>
-        <h2 className="font-display uppercase text-2xl tracking-tight mb-4">
-          {t("hoursTitle")}
-        </h2>
-        <OpeningHoursBoard
-          labels={{
-            title: hoursT("title"),
-            mon_fri: hoursT("mon_fri"),
-            sat: hoursT("sat"),
-            sun: hoursT("sun"),
-            closed: hoursT("closed"),
-            lunchNote: hoursT("lunchNote"),
-            today: hoursT("today"),
-          }}
-        />
-      </ScrollReveal>
     </main>
   );
 }

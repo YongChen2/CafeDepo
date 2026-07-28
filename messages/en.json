@@ -18,10 +18,6 @@
   },
   "hours": {
     "title": "OPENING HOURS",
-    "mon_fri": "MON—FRI",
-    "sat": "SAT",
-    "sun": "SUN",
-    "closed": "CLOSED",
     "lunchNote": "Lunch menu served 11:00–14:45",
     "today": "TODAY"
   },

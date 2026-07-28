@@ -34,15 +34,15 @@ export function MapEmbed({
   if (consent !== "accepted") {
     return (
       <div
-        className={`ascii-frame bg-bg-alt flex flex-col items-center justify-center gap-3 p-6 text-center font-mono text-xs ${className}`}
+        className={`card-frame bg-bg-alt flex flex-col items-center justify-center gap-3 p-6 text-center font-mono text-xs ${className}`}
       >
-        <p className="opacity-70">{labels.consentNote}</p>
+        <p className="text-muted">{labels.consentNote}</p>
         <button
           onClick={() => {
             localStorage.setItem(CONSENT_KEY, "accepted");
             window.dispatchEvent(new StorageEvent("storage"));
           }}
-          className="bg-fg text-bg uppercase px-4 py-3"
+          className="btn-invert bg-fg text-bg uppercase px-4 py-3 rounded-[2px]"
         >
           {labels.consentCta}
         </button>
@@ -56,7 +56,7 @@ export function MapEmbed({
       src={`https://www.google.com/maps?q=${mapsQuery}&output=embed`}
       loading="lazy"
       referrerPolicy="no-referrer-when-downgrade"
-      className={`ascii-frame w-full border-0 ${className}`}
+      className={`card-frame w-full border-0 ${className}`}
     />
   );
 }

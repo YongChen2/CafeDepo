@@ -39,10 +39,10 @@ export default async function AboutPage({
       />
 
       <div>
-        <p className="font-mono text-xs uppercase tracking-widest opacity-60">
+        <p className="font-mono text-xs uppercase tracking-widest text-muted">
           {t("kicker")}
         </p>
-        <h1 className="font-display uppercase tracking-tight text-4xl sm:text-6xl mt-2">
+        <h1 className="font-display uppercase tracking-[-0.03em] text-4xl sm:text-6xl mt-2">
           {t("title")}
         </h1>
       </div>
@@ -62,14 +62,14 @@ export default async function AboutPage({
           fetchPriority="high"
           sizes="(max-width: 768px) 100vw, 512px"
         />
-        <div className="flex flex-col gap-4 font-mono text-base">
+        <div className="flex flex-col gap-4 text-base leading-[1.6]">
           <p className="text-lg">{t("lead")}</p>
-          <p className="opacity-80">{t("body1")}</p>
-          <p className="opacity-80">{t("body2")}</p>
+          <p>{t("body1")}</p>
+          <p>{t("body2")}</p>
         </div>
       </div>
 
-      <ScrollReveal className="ascii-frame p-6 flex flex-col sm:flex-row gap-6 items-start sm:items-center">
+      <ScrollReveal className="card-frame bg-bg p-6 flex flex-col sm:flex-row gap-6 items-start sm:items-center">
         <div className="w-32 shrink-0">
           <SmartImage
             src="/images/logo/sestry-01.webp"
@@ -86,10 +86,10 @@ export default async function AboutPage({
           />
         </div>
         <div>
-          <h2 className="font-display uppercase text-lg tracking-tight">
+          <h2 className="font-display uppercase text-lg">
             {t("ownersTitle")}
           </h2>
-          <p className="font-mono text-sm opacity-80 mt-1">{t("ownersText")}</p>
+          <p className="text-sm mt-1 leading-[1.6]">{t("ownersText")}</p>
         </div>
       </ScrollReveal>
     </main>

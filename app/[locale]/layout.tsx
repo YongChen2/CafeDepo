@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { Analytics } from "@vercel/analytics/next";
-import { archivoBlack, jetbrainsMono } from "@/lib/fonts";
+import { archivoBlack, inter, jetbrainsMono } from "@/lib/fonts";
 import { routing } from "@/i18n/routing";
 import { SITE } from "@/lib/site";
 import { cafeJsonLd, jsonLdScriptProps } from "@/lib/jsonld";
@@ -64,14 +64,14 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${archivoBlack.variable} ${jetbrainsMono.variable}`}
+      className={`${archivoBlack.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-screen flex flex-col bg-bg text-fg font-mono antialiased">
+      <body className="min-h-screen flex flex-col bg-bg text-fg font-sans antialiased">
         <script {...jsonLdScriptProps(cafeJsonLd())} />
         <NextIntlClientProvider messages={messages} timeZone="Europe/Prague">
           <a
             href="#main-content"
-            className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-2 focus-visible:left-2 focus-visible:z-[1000] focus-visible:bg-fg focus-visible:text-bg focus-visible:px-4 focus-visible:py-3 focus-visible:font-mono focus-visible:uppercase focus-visible:text-xs"
+            className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-2 focus-visible:left-2 focus-visible:z-[1000] focus-visible:bg-fg focus-visible:text-bg focus-visible:px-4 focus-visible:py-3 focus-visible:rounded-[2px] focus-visible:font-mono focus-visible:uppercase focus-visible:text-xs"
           >
             {t("skipLink")}
           </a>

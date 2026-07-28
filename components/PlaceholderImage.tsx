@@ -47,12 +47,12 @@ function Halftone({
             cx={spacing / 2}
             cy={spacing / 2}
             r={radius}
-            fill="#050505"
-            fillOpacity={0.35}
+            fill="#1a1a1a"
+            fillOpacity={0.15}
           />
         </pattern>
       </defs>
-      <rect x={0} y={0} width={w} height={h} fill="#eae8e3" />
+      <rect x={0} y={0} width={w} height={h} fill="#f1ece3" />
       <rect x={0} y={0} width={w} height={h} fill={`url(#${id})`} />
     </>
   );
@@ -69,7 +69,7 @@ function Composition({
   h: number;
   rng: () => number;
 }) {
-  const stroke = "#050505";
+  const stroke = "#1a1a1a";
 
   if (kind === "kava") {
     const cx = w / 2;
@@ -77,7 +77,7 @@ function Composition({
     const count = rngInt(rng, 4, 6);
     const base = Math.min(w, h) * 0.1;
     return (
-      <g fill="none" stroke={stroke} strokeWidth={1.25} opacity={0.75}>
+      <g fill="none" stroke={stroke} strokeWidth={1.25} opacity={0.4}>
         {Array.from({ length: count }).map((_, i) => (
           <circle
             key={i}
@@ -105,7 +105,7 @@ function Composition({
       lines.push(<line key={`h${j}`} x1={0} y1={y} x2={w} y2={y} />);
     }
     return (
-      <g stroke={stroke} strokeWidth={1} opacity={0.55}>
+      <g stroke={stroke} strokeWidth={1} opacity={0.3}>
         {lines}
       </g>
     );
@@ -124,15 +124,15 @@ function Composition({
           x2={w}
           y2={tableY}
           strokeWidth={1.25}
-          opacity={0.5}
+          opacity={0.3}
         />
-        <circle cx={cx} cy={cy} r={plateR} strokeWidth={1.5} opacity={0.8} />
+        <circle cx={cx} cy={cy} r={plateR} strokeWidth={1.5} opacity={0.45} />
         <circle
           cx={cx}
           cy={cy}
           r={plateR * 0.62}
           strokeWidth={1}
-          opacity={0.5}
+          opacity={0.3}
         />
       </g>
     );
@@ -141,7 +141,7 @@ function Composition({
   if (kind === "exterier") {
     const count = rngInt(rng, 5, 8);
     return (
-      <g stroke={stroke} opacity={0.5}>
+      <g stroke={stroke} opacity={0.3}>
         {Array.from({ length: count }).map((_, i) => {
           const y = ((i + 0.5) / count) * h * (0.85 + rngInt(rng, 0, 10) / 100);
           return (
@@ -164,7 +164,7 @@ function Composition({
   const cx = w / 2;
   const cy = h / 2;
   return (
-    <g stroke={stroke} fill="none" strokeWidth={1.25} opacity={0.75}>
+    <g stroke={stroke} fill="none" strokeWidth={1.25} opacity={0.4}>
       <rect
         x={cx - size / 2}
         y={cy - size / 2}
@@ -181,7 +181,7 @@ function Composition({
 function CornerCross({ x, y }: { x: number; y: number }) {
   const s = 6;
   return (
-    <g stroke="#050505" strokeWidth={1}>
+    <g stroke="#1a1a1a" strokeWidth={1} opacity={0.5}>
       <line x1={x - s} y1={y} x2={x + s} y2={y} />
       <line x1={x} y1={y - s} x2={x} y2={y + s} />
     </g>
@@ -215,7 +215,7 @@ export function PlaceholderImage({
     <div
       role="img"
       aria-label={label ?? `Připravovaná fotografie — ${kind}`}
-      className={`relative @container overflow-hidden ascii-frame cursor-crosshair ${aspect} ${className}`}
+      className={`relative @container overflow-hidden photo-industrial ${aspect} ${className}`}
     >
       <svg
         viewBox={`0 0 ${w} ${h}`}
@@ -234,8 +234,8 @@ export function PlaceholderImage({
           y={h - 14}
           fontFamily="var(--font-mono), monospace"
           fontSize={h * 0.045}
-          fill="#050505"
-          opacity={0.55}
+          fill="#1a1a1a"
+          opacity={0.4}
         >
           {`${tag} /// ${nominalW}x${nominalH}`}
         </text>
@@ -245,34 +245,31 @@ export function PlaceholderImage({
             y={20}
             fontFamily="var(--font-mono), monospace"
             fontSize={h * 0.04}
-            fill="#050505"
-            opacity={0.5}
+            fill="#1a1a1a"
+            opacity={0.4}
           >
             {label.length > 34 ? `${label.slice(0, 33)}…` : label}
           </text>
         )}
       </svg>
 
-      {/* Povinný diagonální pás — nesmí být skrytý ani na malých náhledech. */}
+      {/* Decentní horizontální pruh dole — nesmí být skrytý ani na malých náhledech. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 flex items-center justify-center pointer-events-none"
-        style={{ transform: "rotate(-8deg)" }}
+        className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center gap-0.5 bg-fg text-bg py-1.5 pointer-events-none"
       >
-        <div className="w-[150%] bg-fg text-bg flex flex-col items-center justify-center gap-0.5 py-1">
-          <span
-            className="font-mono uppercase tracking-wide text-center leading-tight px-2"
-            style={{ fontSize: "clamp(0.5rem, 4.2cqw, 1.05rem)" }}
-          >
-            PLACEHOLDER /// MÍSTO PRO REÁLNOU FOTOGRAFII
-          </span>
-          <span
-            className="font-mono uppercase tracking-wide text-center leading-tight opacity-80 px-2"
-            style={{ fontSize: "clamp(0.4rem, 2.4cqw, 0.7rem)" }}
-          >
-            NÁHLED — GRAFIKA NENÍ FOTOGRAFIÍ PODNIKU
-          </span>
-        </div>
+        <span
+          className="font-mono uppercase tracking-wide text-center leading-tight px-2"
+          style={{ fontSize: "clamp(0.5rem, 3.6cqw, 0.85rem)" }}
+        >
+          PLACEHOLDER /// MÍSTO PRO REÁLNOU FOTOGRAFII
+        </span>
+        <span
+          className="font-mono uppercase tracking-wide text-center leading-tight opacity-70 px-2"
+          style={{ fontSize: "clamp(0.4rem, 2.2cqw, 0.65rem)" }}
+        >
+          NÁHLED — GRAFIKA NENÍ FOTOGRAFIÍ PODNIKU
+        </span>
       </div>
     </div>
   );
